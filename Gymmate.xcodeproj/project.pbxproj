@@ -1,0 +1,524 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02A685AF1C6335FA00946810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A685AE1C6335FA00946810 /* AppDelegate.swift */; };
+		02A685B11C6335FA00946810 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A685B01C6335FA00946810 /* ViewController.swift */; };
+		02A685B41C6335FA00946810 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02A685B21C6335FA00946810 /* Main.storyboard */; };
+		02A685B71C6335FA00946810 /* Gymmate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 02A685B51C6335FA00946810 /* Gymmate.xcdatamodeld */; };
+		02A685B91C6335FA00946810 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02A685B81C6335FA00946810 /* Assets.xcassets */; };
+		02A685BC1C6335FA00946810 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02A685BA1C6335FA00946810 /* LaunchScreen.storyboard */; };
+		02A685C71C6335FA00946810 /* GymmateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A685C61C6335FA00946810 /* GymmateTests.swift */; };
+		02A685D21C6335FA00946810 /* GymmateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A685D11C6335FA00946810 /* GymmateUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		02A685C31C6335FA00946810 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 02A685A31C6335FA00946810 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 02A685AA1C6335FA00946810;
+			remoteInfo = Gymmate;
+		};
+		02A685CE1C6335FA00946810 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 02A685A31C6335FA00946810 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 02A685AA1C6335FA00946810;
+			remoteInfo = Gymmate;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		02A685AB1C6335FA00946810 /* Gymmate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gymmate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		02A685AE1C6335FA00946810 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		02A685B01C6335FA00946810 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		02A685B31C6335FA00946810 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		02A685B61C6335FA00946810 /* Gymmate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Gymmate.xcdatamodel; sourceTree = "<group>"; };
+		02A685B81C6335FA00946810 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		02A685BB1C6335FA00946810 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		02A685BD1C6335FA00946810 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02A685C21C6335FA00946810 /* GymmateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GymmateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		02A685C61C6335FA00946810 /* GymmateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymmateTests.swift; sourceTree = "<group>"; };
+		02A685C81C6335FA00946810 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02A685CD1C6335FA00946810 /* GymmateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GymmateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		02A685D11C6335FA00946810 /* GymmateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymmateUITests.swift; sourceTree = "<group>"; };
+		02A685D31C6335FA00946810 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		02A685A81C6335FA00946810 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02A685BF1C6335FA00946810 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02A685CA1C6335FA00946810 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		02A685A21C6335FA00946810 = {
+			isa = PBXGroup;
+			children = (
+				02A685AD1C6335FA00946810 /* Gymmate */,
+				02A685C51C6335FA00946810 /* GymmateTests */,
+				02A685D01C6335FA00946810 /* GymmateUITests */,
+				02A685AC1C6335FA00946810 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		02A685AC1C6335FA00946810 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				02A685AB1C6335FA00946810 /* Gymmate.app */,
+				02A685C21C6335FA00946810 /* GymmateTests.xctest */,
+				02A685CD1C6335FA00946810 /* GymmateUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		02A685AD1C6335FA00946810 /* Gymmate */ = {
+			isa = PBXGroup;
+			children = (
+				02A685AE1C6335FA00946810 /* AppDelegate.swift */,
+				02A685B01C6335FA00946810 /* ViewController.swift */,
+				02A685B21C6335FA00946810 /* Main.storyboard */,
+				02A685B81C6335FA00946810 /* Assets.xcassets */,
+				02A685BA1C6335FA00946810 /* LaunchScreen.storyboard */,
+				02A685BD1C6335FA00946810 /* Info.plist */,
+				02A685B51C6335FA00946810 /* Gymmate.xcdatamodeld */,
+			);
+			path = Gymmate;
+			sourceTree = "<group>";
+		};
+		02A685C51C6335FA00946810 /* GymmateTests */ = {
+			isa = PBXGroup;
+			children = (
+				02A685C61C6335FA00946810 /* GymmateTests.swift */,
+				02A685C81C6335FA00946810 /* Info.plist */,
+			);
+			path = GymmateTests;
+			sourceTree = "<group>";
+		};
+		02A685D01C6335FA00946810 /* GymmateUITests */ = {
+			isa = PBXGroup;
+			children = (
+				02A685D11C6335FA00946810 /* GymmateUITests.swift */,
+				02A685D31C6335FA00946810 /* Info.plist */,
+			);
+			path = GymmateUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		02A685AA1C6335FA00946810 /* Gymmate */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 02A685D61C6335FA00946810 /* Build configuration list for PBXNativeTarget "Gymmate" */;
+			buildPhases = (
+				02A685A71C6335FA00946810 /* Sources */,
+				02A685A81C6335FA00946810 /* Frameworks */,
+				02A685A91C6335FA00946810 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Gymmate;
+			productName = Gymmate;
+			productReference = 02A685AB1C6335FA00946810 /* Gymmate.app */;
+			productType = "com.apple.product-type.application";
+		};
+		02A685C11C6335FA00946810 /* GymmateTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 02A685D91C6335FA00946810 /* Build configuration list for PBXNativeTarget "GymmateTests" */;
+			buildPhases = (
+				02A685BE1C6335FA00946810 /* Sources */,
+				02A685BF1C6335FA00946810 /* Frameworks */,
+				02A685C01C6335FA00946810 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				02A685C41C6335FA00946810 /* PBXTargetDependency */,
+			);
+			name = GymmateTests;
+			productName = GymmateTests;
+			productReference = 02A685C21C6335FA00946810 /* GymmateTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		02A685CC1C6335FA00946810 /* GymmateUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 02A685DC1C6335FA00946810 /* Build configuration list for PBXNativeTarget "GymmateUITests" */;
+			buildPhases = (
+				02A685C91C6335FA00946810 /* Sources */,
+				02A685CA1C6335FA00946810 /* Frameworks */,
+				02A685CB1C6335FA00946810 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				02A685CF1C6335FA00946810 /* PBXTargetDependency */,
+			);
+			name = GymmateUITests;
+			productName = GymmateUITests;
+			productReference = 02A685CD1C6335FA00946810 /* GymmateUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		02A685A31C6335FA00946810 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = TrungDo;
+				TargetAttributes = {
+					02A685AA1C6335FA00946810 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					02A685C11C6335FA00946810 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 02A685AA1C6335FA00946810;
+					};
+					02A685CC1C6335FA00946810 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 02A685AA1C6335FA00946810;
+					};
+				};
+			};
+			buildConfigurationList = 02A685A61C6335FA00946810 /* Build configuration list for PBXProject "Gymmate" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 02A685A21C6335FA00946810;
+			productRefGroup = 02A685AC1C6335FA00946810 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				02A685AA1C6335FA00946810 /* Gymmate */,
+				02A685C11C6335FA00946810 /* GymmateTests */,
+				02A685CC1C6335FA00946810 /* GymmateUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		02A685A91C6335FA00946810 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02A685BC1C6335FA00946810 /* LaunchScreen.storyboard in Resources */,
+				02A685B91C6335FA00946810 /* Assets.xcassets in Resources */,
+				02A685B41C6335FA00946810 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02A685C01C6335FA00946810 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02A685CB1C6335FA00946810 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		02A685A71C6335FA00946810 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02A685B71C6335FA00946810 /* Gymmate.xcdatamodeld in Sources */,
+				02A685B11C6335FA00946810 /* ViewController.swift in Sources */,
+				02A685AF1C6335FA00946810 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02A685BE1C6335FA00946810 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02A685C71C6335FA00946810 /* GymmateTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02A685C91C6335FA00946810 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02A685D21C6335FA00946810 /* GymmateUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		02A685C41C6335FA00946810 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 02A685AA1C6335FA00946810 /* Gymmate */;
+			targetProxy = 02A685C31C6335FA00946810 /* PBXContainerItemProxy */;
+		};
+		02A685CF1C6335FA00946810 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 02A685AA1C6335FA00946810 /* Gymmate */;
+			targetProxy = 02A685CE1C6335FA00946810 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		02A685B21C6335FA00946810 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				02A685B31C6335FA00946810 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		02A685BA1C6335FA00946810 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				02A685BB1C6335FA00946810 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		02A685D41C6335FA00946810 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		02A685D51C6335FA00946810 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		02A685D71C6335FA00946810 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Gymmate/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TrungDo.Gymmate;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		02A685D81C6335FA00946810 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Gymmate/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TrungDo.Gymmate;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		02A685DA1C6335FA00946810 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = GymmateTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TrungDo.GymmateTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Gymmate.app/Gymmate";
+			};
+			name = Debug;
+		};
+		02A685DB1C6335FA00946810 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = GymmateTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TrungDo.GymmateTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Gymmate.app/Gymmate";
+			};
+			name = Release;
+		};
+		02A685DD1C6335FA00946810 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = GymmateUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TrungDo.GymmateUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Gymmate;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		02A685DE1C6335FA00946810 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = GymmateUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TrungDo.GymmateUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Gymmate;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		02A685A61C6335FA00946810 /* Build configuration list for PBXProject "Gymmate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				02A685D41C6335FA00946810 /* Debug */,
+				02A685D51C6335FA00946810 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		02A685D61C6335FA00946810 /* Build configuration list for PBXNativeTarget "Gymmate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				02A685D71C6335FA00946810 /* Debug */,
+				02A685D81C6335FA00946810 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		02A685D91C6335FA00946810 /* Build configuration list for PBXNativeTarget "GymmateTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				02A685DA1C6335FA00946810 /* Debug */,
+				02A685DB1C6335FA00946810 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		02A685DC1C6335FA00946810 /* Build configuration list for PBXNativeTarget "GymmateUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				02A685DD1C6335FA00946810 /* Debug */,
+				02A685DE1C6335FA00946810 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		02A685B51C6335FA00946810 /* Gymmate.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				02A685B61C6335FA00946810 /* Gymmate.xcdatamodel */,
+			);
+			currentVersion = 02A685B61C6335FA00946810 /* Gymmate.xcdatamodel */;
+			path = Gymmate.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 02A685A31C6335FA00946810 /* Project object */;
+}
