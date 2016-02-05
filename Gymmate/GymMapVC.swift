@@ -1,11 +1,10 @@
 //
-//  ViewController.swift
-//  Gym8
+//  GymMapVC.swift
+//  Gymmate
 //
-//  Created by Trung Do on 1/30/16.
+//  Created by Trung Do on 2/4/16.
 //  Copyright © 2016 TrungDo. All rights reserved.
 //
-
 import UIKit
 import MapKit
 import CoreLocation
@@ -13,16 +12,13 @@ import GoogleMaps
 import Firebase
 
 
-class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDelegate {
-    
+class GymMapVC: UIViewController,GMSMapViewDelegate,CLLocationManagerDelegate {
+
     @IBOutlet weak var mapView: GMSMapView!
     
-    
     let addAnEventButton   = UIButton(type: UIButtonType.RoundedRect) as UIButton
+    var ref = Firebase(url: "https://gym8.firebaseio.com/listOfEvents/location/gym")
     
-    var ref = Firebase(url: "https://gym8.firebaseio.com/listOfEvents/location/run")
-    
-    @IBOutlet weak var addEventView: AddEventView!
     var addAnEventMode = false;
     let locationManager = CLLocationManager()
     override func viewDidLoad() {
@@ -37,9 +33,7 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         self.mapView.myLocationEnabled = true
         self.mapView.settings.myLocationButton = true
         self.mapView.settings.compassButton = true
-        self.view.insertSubview(mapView, atIndex: 0)
-        self.view.insertSubview(addEventView, atIndex: 1)
-        self.mapView.settings.consumesGesturesInView = false
+        
         mapInitialize()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
@@ -53,8 +47,7 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         addAnEventButton.setTitle("Add", forState: UIControlState.Normal)
         addAnEventButton.addTarget(self, action: "tapAddEvent:", forControlEvents: UIControlEvents.TouchUpInside)
         self.mapView.addSubview(addAnEventButton)
-//        let item = AddEventView(frame: CGRectMake(0, 0, self.view.frame.width, 400))
-//        self.mapView.addSubview(item)        // Attach a closure to read the data at our posts reference
+        // Attach a closure to read the data at our posts reference
         ref.observeEventType(.Value, withBlock: { snapshot in
             let a  = snapshot.children
             for (child) in a.allObjects as![FDataSnapshot] {
@@ -63,15 +56,15 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
                 let coordinate = CLLocationCoordinate2D(latitude: tempLatitude, longitude: tempLongitude)
                 let  position = coordinate
                 let marker = GMSMarker(position: position)
-                marker.icon = GMSMarker.markerImageWithColor(UIColor.blackColor())
+                marker.icon = GMSMarker.markerImageWithColor(UIColor.redColor())
                 marker.title = "Hello World"
                 marker.map = self.mapView
                 
             }
             
-
             
-        }, withCancelBlock: { error in
+            
+            }, withCancelBlock: { error in
                 print(error.description)
         })
     }
@@ -87,11 +80,6 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
             
             
         }
-    }
-    @IBAction func tapMoveToGymVC(sender: AnyObject) {
-        let gymVC = self.storyboard?.instantiateViewControllerWithIdentifier("GymVC") as? GymMapVC
-        print("a")
-        self.navigationController?.pushViewController(gymVC!, animated: true)
     }
     func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
         NSLog("You tapped at \(coordinate.latitude), \(coordinate.longitude)")
@@ -125,6 +113,12 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         self.locationManager.stopUpdatingLocation()
     }
     
+
+    
+    @IBAction func tapMoveToRunVC(sender: AnyObject) {
+        navigationController?.popViewControllerAnimated(true)
+
+        
+    }
     
 }
-

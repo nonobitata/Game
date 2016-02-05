@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		028111F31C647CE0007DE964 /* GymMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028111F21C647CE0007DE964 /* GymMapVC.swift */; };
+		028111F51C6488DA007DE964 /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028111F41C6488DA007DE964 /* AddEventView.swift */; };
+		028111F71C64891C007DE964 /* AddEventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 028111F61C64891C007DE964 /* AddEventView.xib */; };
 		02A685AF1C6335FA00946810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A685AE1C6335FA00946810 /* AppDelegate.swift */; };
 		02A685B11C6335FA00946810 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A685B01C6335FA00946810 /* ViewController.swift */; };
 		02A685B41C6335FA00946810 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02A685B21C6335FA00946810 /* Main.storyboard */; };
@@ -15,6 +18,7 @@
 		02A685BC1C6335FA00946810 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02A685BA1C6335FA00946810 /* LaunchScreen.storyboard */; };
 		02A685C71C6335FA00946810 /* GymmateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A685C61C6335FA00946810 /* GymmateTests.swift */; };
 		02A685D21C6335FA00946810 /* GymmateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A685D11C6335FA00946810 /* GymmateUITests.swift */; };
+		EE33EEE1982F43FFFEC5798F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA143E5D752BB992C6F3C4FC /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		028111F21C647CE0007DE964 /* GymMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GymMapVC.swift; sourceTree = "<group>"; };
+		028111F41C6488DA007DE964 /* AddEventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
+		028111F61C64891C007DE964 /* AddEventView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventView.xib; sourceTree = "<group>"; };
 		02A685AB1C6335FA00946810 /* Gymmate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gymmate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02A685AE1C6335FA00946810 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02A685B01C6335FA00946810 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +56,9 @@
 		02A685CD1C6335FA00946810 /* GymmateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GymmateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		02A685D11C6335FA00946810 /* GymmateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymmateUITests.swift; sourceTree = "<group>"; };
 		02A685D31C6335FA00946810 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B32963FF658EA6C4D1FE582 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		BA143E5D752BB992C6F3C4FC /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C607754E6CA382E8CE1C23DE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE33EEE1982F43FFFEC5798F /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +94,8 @@
 				02A685C51C6335FA00946810 /* GymmateTests */,
 				02A685D01C6335FA00946810 /* GymmateUITests */,
 				02A685AC1C6335FA00946810 /* Products */,
+				23D598787BD27396032C9584 /* Pods */,
+				4C5F7CC7128188FD367A0C11 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,8 +113,11 @@
 			isa = PBXGroup;
 			children = (
 				02A685AE1C6335FA00946810 /* AppDelegate.swift */,
-				02A685B01C6335FA00946810 /* ViewController.swift */,
 				02A685B21C6335FA00946810 /* Main.storyboard */,
+				02A685B01C6335FA00946810 /* ViewController.swift */,
+				028111F21C647CE0007DE964 /* GymMapVC.swift */,
+				028111F41C6488DA007DE964 /* AddEventView.swift */,
+				028111F61C64891C007DE964 /* AddEventView.xib */,
 				02A685B81C6335FA00946810 /* Assets.xcassets */,
 				02A685BA1C6335FA00946810 /* LaunchScreen.storyboard */,
 				02A685BD1C6335FA00946810 /* Info.plist */,
@@ -128,6 +144,23 @@
 			path = GymmateUITests;
 			sourceTree = "<group>";
 		};
+		23D598787BD27396032C9584 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8B32963FF658EA6C4D1FE582 /* Pods.debug.xcconfig */,
+				C607754E6CA382E8CE1C23DE /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		4C5F7CC7128188FD367A0C11 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BA143E5D752BB992C6F3C4FC /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +168,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 02A685D61C6335FA00946810 /* Build configuration list for PBXNativeTarget "Gymmate" */;
 			buildPhases = (
+				608B609A55C2287C14CE16CD /* Check Pods Manifest.lock */,
 				02A685A71C6335FA00946810 /* Sources */,
 				02A685A81C6335FA00946810 /* Frameworks */,
 				02A685A91C6335FA00946810 /* Resources */,
+				F151A24FFA2F587E6386BB17 /* Embed Pods Frameworks */,
+				9C51C2073FCCDA2DC5FBB5BF /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -235,6 +271,7 @@
 				02A685BC1C6335FA00946810 /* LaunchScreen.storyboard in Resources */,
 				02A685B91C6335FA00946810 /* Assets.xcassets in Resources */,
 				02A685B41C6335FA00946810 /* Main.storyboard in Resources */,
+				028111F71C64891C007DE964 /* AddEventView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,12 +291,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		608B609A55C2287C14CE16CD /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9C51C2073FCCDA2DC5FBB5BF /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F151A24FFA2F587E6386BB17 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		02A685A71C6335FA00946810 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				028111F51C6488DA007DE964 /* AddEventView.swift in Sources */,
 				02A685B71C6335FA00946810 /* Gymmate.xcdatamodeld in Sources */,
+				028111F31C647CE0007DE964 /* GymMapVC.swift in Sources */,
 				02A685B11C6335FA00946810 /* ViewController.swift in Sources */,
 				02A685AF1C6335FA00946810 /* AppDelegate.swift in Sources */,
 			);
@@ -401,8 +488,14 @@
 		};
 		02A685D71C6335FA00946810 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B32963FF658EA6C4D1FE582 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/GoogleMaps/Frameworks\"",
+					"\"${PODS_ROOT}/Firebase\"",
+				);
 				INFOPLIST_FILE = Gymmate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TrungDo.Gymmate;
@@ -412,8 +505,14 @@
 		};
 		02A685D81C6335FA00946810 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C607754E6CA382E8CE1C23DE /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/GoogleMaps/Frameworks\"",
+					"\"${PODS_ROOT}/Firebase\"",
+				);
 				INFOPLIST_FILE = Gymmate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TrungDo.Gymmate;
@@ -488,6 +587,7 @@
 				02A685D81C6335FA00946810 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		02A685D91C6335FA00946810 /* Build configuration list for PBXNativeTarget "GymmateTests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +596,7 @@
 				02A685DB1C6335FA00946810 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		02A685DC1C6335FA00946810 /* Build configuration list for PBXNativeTarget "GymmateUITests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +605,7 @@
 				02A685DE1C6335FA00946810 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
