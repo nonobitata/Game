@@ -32,23 +32,9 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tdC-Wh-1BE" customClass="AddEventView" customModule="Gymmate" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="360" width="600" height="240"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="tdC-Wh-1BE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Phb-hN-kkT"/>
-                            <constraint firstItem="tdC-Wh-1BE" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="b2E-Ui-1Li"/>
-                            <constraint firstItem="tdC-Wh-1BE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="296" id="qAn-Ho-Jjr"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zYF-ZJ-mjZ"/>
-                    <connections>
-                        <outlet property="addEventInfo" destination="tdC-Wh-1BE" id="FRq-QT-Khq"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

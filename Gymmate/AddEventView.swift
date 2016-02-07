@@ -23,11 +23,7 @@ class AddEventView: UIView,UIPickerViewDataSource,UIPickerViewDelegate,UITextVie
 
         required init(coder aDecoder: NSCoder) {
             super.init(coder: aDecoder)!
-            NSBundle.mainBundle().loadNibNamed("AddEventView", owner: self, options: nil)
-            self.addSubview(self.view);
-            self.routeDescriptionText.delegate = self
-            self.dateTimePickerView.delegate = self
-            self.dateTimePickerView.dataSource = self
+           setUp()
             
             //setUpPickerView()
     }
@@ -51,12 +47,10 @@ class AddEventView: UIView,UIPickerViewDataSource,UIPickerViewDelegate,UITextVie
     // for this to work programmatically I had to do the same...
     override init(frame: CGRect) {
         super.init(frame: frame)
-        NSBundle.mainBundle().loadNibNamed("AddEventView", owner: self, options: nil)
-        self.view.frame = bounds
-        self.addSubview(self.view)
-        self.dateTimePickerView.delegate = self
-        self.dateTimePickerView.dataSource = self
-        self.dateTimePickerView.hidden = true
+       // NSBundle.mainBundle().loadNibNamed("AddEventView", owner: self, options: nil)
+        setUp()
+
+       
     }
    
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -99,5 +93,22 @@ class AddEventView: UIView,UIPickerViewDataSource,UIPickerViewDelegate,UITextVie
             return false
         }
         return true
+    }
+    func setUp(){
+        view = loadViewFromNib()
+        view.frame = bounds
+        self.addSubview(self.view);
+        self.routeDescriptionText.delegate = self
+        self.dateTimePickerView.delegate = self
+        self.dateTimePickerView.dataSource = self
+        //self.dateTimePickerView.hidden = true
+    }
+    func loadViewFromNib()->UIView
+    {
+        let bundle =  NSBundle(forClass: self.dynamicType)
+            //.mainBundle().loadNibNamed("AddEventView", owner: self, options: nil)
+        let nib = UINib(nibName: "AddEventView", bundle: bundle)
+        let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+        return view
     }
 }

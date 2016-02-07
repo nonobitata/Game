@@ -15,7 +15,7 @@ import Firebase
 
 class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDelegate {
     
-    @IBOutlet weak var addEventInfo: AddEventView!
+    
     lazy var mapView = GMSMapView()
     let addAnEventButton   = UIButton(type: UIButtonType.RoundedRect) as UIButton
     let moveToGymVCButton   = UIButton(type: UIButtonType.RoundedRect) as UIButton
@@ -27,13 +27,28 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib
         mapInitialize()
-       //
+        
         addEventButtonInitialize()
         moveToGymVCButtonInitialize()
+        
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
         
+    }
+    func keyboardWillShow(notification: NSNotification) {
         
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            self.view.frame.origin.y -= keyboardSize.height
+        }
+        
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            self.view.frame.origin.y += keyboardSize.height
+        }
     }
     func addEventButtonInitialize(){
         self.addAnEventButton.frame = CGRectMake(20 , 70, 50, 50)
@@ -42,12 +57,6 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         self.addAnEventButton.addTarget(self, action: "tapAddEvent:", forControlEvents: UIControlEvents.TouchUpInside)
         self.mapView.addSubview(addAnEventButton)
         
-        
-        self.addEventInfo.frame = CGRectMake(0,self.mapView.frame.height/2, self.view.frame.width,(self.view.frame.height/2))
-        self.view.insertSubview(addEventInfo, atIndex:2)
-        self.addEventInfo.hidden = true
-
-    
     }
     
     func moveToGymVCButtonInitialize(){
@@ -99,15 +108,12 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         if (!addAnEventMode){
             addAnEventMode = true;
             addAnEventButton.backgroundColor = UIColor.redColor()
-           // addEventInfo.hidden = false
 
         }
         else{
             addAnEventMode = false;
             addAnEventButton.backgroundColor = UIColor.whiteColor()
-            addEventInfo.hidden = true
-
-
+            
         }
     }
     @IBAction func tapMoveToGymVC(sender: AnyObject) {
@@ -126,32 +132,75 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
             marker.title = "Hello World"
             marker.map = self.mapView
             //addDataToFirebase(position)
-            test()
+            
             addAnEventMode = false
             addAnEventButton.backgroundColor = UIColor.whiteColor()
-            addEventInfo.hidden = false
-         appearFromBottom(self.addEventInfo,animationTime:1.0)
-            
+            createAnAddEventInfoView()
 
         }
     }
-    func appearFromBottom(view: UIView, animationTime: Float){
-        var animation:CATransition = CATransition()
-        animation.duration = CFTimeInterval(animationTime)
-        animation.type = "moveIn"
-        animation.timingFunction = CAMediaTimingFunction(name:"easeInEaseOut")
-        animation.subtype = "fromBottom"
-        animation.fillMode = "forwards"
-        view.layer.addAnimation(animation, forKey: nil)
-    }
-    func test(){
-        var description = self.addEventInfo.routeDescriptionText.text;
-           print(description)
+ 
+    func createAnAddEventInfoView(){
+        let blurView = UIView(frame:CGRect(x:0, y:0, width:self.view.frame.width,height: self.view.frame.height))
+        blurView.backgroundColor = UIColor.whiteColor()
+        blurView.alpha = 0.30
+        blurView.tag = 1
+        self.view.insertSubview(blurView, atIndex: 3)
+        
+        let addInfo = AddEventView(frame:CGRect(x:0, y:self.view.frame.height/2, width:self.view.frame.width,height: self.view.frame.height/2))
+        addInfo.tag = 2
+        self.view.insertSubview(addInfo, atIndex:4)
+        appearFromBottom(addInfo,animationTime:0.15)
+        
+        let cancel   = UIButton(type: UIButtonType.RoundedRect) as UIButton
+        cancel.frame = CGRect(x:0, y:addInfo.frame.minY-50, width:self.view.frame.width/2,height: 50)
+        cancel.tag = 3
+        cancel.setTitle("Cancel", forState: UIControlState.Normal)
+        cancel.backgroundColor = UIColor.lightGrayColor()
+        cancel.addTarget(self, action: "cancelAddEvent:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.insertSubview(cancel, atIndex:5)
+        appearFromBottom(cancel,animationTime:0.15)
+
+        let agree   = UIButton(type: UIButtonType.RoundedRect) as UIButton
+        agree.frame = CGRect(x:cancel.frame.maxX, y:addInfo.frame.minY-50, width:self.view.frame.width/2,height: 50)
+        agree.tag = 4
+        agree.setTitle("Agree", forState: UIControlState.Normal)
+        agree.backgroundColor = UIColor.blueColor()
+        agree.addTarget(self, action: "agreeAddEvent:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.insertSubview(agree, atIndex:6)
+        appearFromBottom(agree,animationTime:0.15)
+
     }
     @IBAction func tapConfirmAddEvent(sender: AnyObject) {
-        var description = self.addEventInfo.routeDescriptionText.text;
-        var date = self.addEventInfo.dateTimePickerView.description
-        print(date)
+        
+
+    }
+    @IBAction func agreeAddEvent(sender: AnyObject) {
+        let viewWithTag = self.view.viewWithTag(2) as! AddEventView
+        print(viewWithTag.routeDescriptionText.text)
+    }
+    
+    @IBAction func cancelAddEvent(sender: AnyObject) {
+        if let viewWithTag = self.view.viewWithTag(1) {
+            viewWithTag.removeFromSuperview()
+        }else{
+            print("No!")
+        }
+        for index in 2...4{
+            if let viewWithTag = self.view.viewWithTag(index) {
+                    disapprearToBottom(viewWithTag,animationTime: 1)
+        }
+//        if let viewWithTag = self.view.viewWithTag(200) {
+//            disapprearToBottom(viewWithTag,animationTime: 1)
+//        }else{
+//            print("No!")
+//        }
+//        if let viewWithTag = self.view.viewWithTag(300) {
+//            disapprearToBottom(viewWithTag,animationTime: 1)
+//        }else{
+//            print("No!")
+//        }
+        }
     }
     
     func addDataToFirebase(position: CLLocationCoordinate2D, routeDescription: NSString, duration: NSInteger){
@@ -168,10 +217,25 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         let camera = GMSCameraPosition.cameraWithLatitude(location!.coordinate.latitude, longitude: location!.coordinate.longitude, zoom: 15)
         //        let region = MKCoordinateRegion(center: center , span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
         mapView.camera = camera
-        
-        
         self.locationManager.stopUpdatingLocation()
     }
+    func appearFromBottom(view: UIView, animationTime: Float){
+        var animation:CATransition = CATransition()
+        animation.duration = CFTimeInterval(animationTime)
+        animation.type = "moveIn"
+        animation.timingFunction = CAMediaTimingFunction(name:"easeInEaseOut")
+        animation.subtype = "fromTop"
+        animation.fillMode = "forwards"
+        view.layer.addAnimation(animation, forKey: nil)
+    }
+    func disapprearToBottom(view: UIView, animationTime: NSTimeInterval){
+        UIView.animateWithDuration(animationTime, animations:  {() in
+            view.center.y = +2000
+            }, completion:{(Bool)  in
+                view.removeFromSuperview()
+        })
+    }
+    
     
     
 }
