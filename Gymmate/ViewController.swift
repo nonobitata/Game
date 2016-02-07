@@ -15,46 +15,66 @@ import Firebase
 
 class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDelegate {
     
-    @IBOutlet weak var mapView: GMSMapView!
-    
-    
+    @IBOutlet weak var addEventInfo: AddEventView!
+    lazy var mapView = GMSMapView()
     let addAnEventButton   = UIButton(type: UIButtonType.RoundedRect) as UIButton
-    
+    let moveToGymVCButton   = UIButton(type: UIButtonType.RoundedRect) as UIButton
     var ref = Firebase(url: "https://gym8.firebaseio.com/listOfEvents/location/run")
     
-    @IBOutlet weak var addEventView: AddEventView!
     var addAnEventMode = false;
     let locationManager = CLLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib
+        mapInitialize()
+       //
+        addEventButtonInitialize()
+        moveToGymVCButtonInitialize()
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        
+        
+    }
+    func addEventButtonInitialize(){
+        self.addAnEventButton.frame = CGRectMake(20 , 70, 50, 50)
+        self.addAnEventButton.backgroundColor = UIColor.whiteColor()
+        self.addAnEventButton.setTitle("Add", forState: UIControlState.Normal)
+        self.addAnEventButton.addTarget(self, action: "tapAddEvent:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.mapView.addSubview(addAnEventButton)
+        
+        
+        self.addEventInfo.frame = CGRectMake(0,self.mapView.frame.height/2, self.view.frame.width,(self.view.frame.height/2))
+        self.view.insertSubview(addEventInfo, atIndex:2)
+        self.addEventInfo.hidden = true
+
+    
+    }
+    
+    func moveToGymVCButtonInitialize(){
+
+        self.moveToGymVCButton.frame = CGRectMake(self.mapView.frame.width/2,self.mapView.frame.height, self.view.frame.width/2,(self.view.frame.height)/4)
+        self.moveToGymVCButton.backgroundColor = UIColor.grayColor()
+
+        self.moveToGymVCButton.setTitle("Next", forState: UIControlState.Normal)
+        self.moveToGymVCButton.addTarget(self, action: "tapMoveToGymVC:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.insertSubview(moveToGymVCButton, atIndex:1)
+    }
+    func mapInitialize(){
         
         self.mapView.delegate = self
+        
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
+        self.mapView.frame = CGRectMake(0,0, self.view.frame.width,(self.view.frame.height*3)/4)
         self.mapView.myLocationEnabled = true
         self.mapView.settings.myLocationButton = true
         self.mapView.settings.compassButton = true
-        self.view.insertSubview(mapView, atIndex: 0)
-        self.view.insertSubview(addEventView, atIndex: 1)
         self.mapView.settings.consumesGesturesInView = false
-        mapInitialize()
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.view.insertSubview(mapView, atIndex: 0)
         
-        
-        //swipe right to open menu
-        
-    }
-    func mapInitialize(){
-        addAnEventButton.frame = CGRectMake(20 , 70, 50, 50)
-        addAnEventButton.backgroundColor = UIColor.whiteColor()
-        addAnEventButton.setTitle("Add", forState: UIControlState.Normal)
-        addAnEventButton.addTarget(self, action: "tapAddEvent:", forControlEvents: UIControlEvents.TouchUpInside)
-        self.mapView.addSubview(addAnEventButton)
-//        let item = AddEventView(frame: CGRectMake(0, 0, self.view.frame.width, 400))
-//        self.mapView.addSubview(item)        // Attach a closure to read the data at our posts reference
+
         ref.observeEventType(.Value, withBlock: { snapshot in
             let a  = snapshot.children
             for (child) in a.allObjects as![FDataSnapshot] {
@@ -79,13 +99,15 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         if (!addAnEventMode){
             addAnEventMode = true;
             addAnEventButton.backgroundColor = UIColor.redColor()
-            
+           // addEventInfo.hidden = false
+
         }
         else{
             addAnEventMode = false;
             addAnEventButton.backgroundColor = UIColor.whiteColor()
-            
-            
+            addEventInfo.hidden = true
+
+
         }
     }
     @IBAction func tapMoveToGymVC(sender: AnyObject) {
@@ -103,10 +125,36 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
             let marker = GMSMarker(position: position)
             marker.title = "Hello World"
             marker.map = self.mapView
-            addDataToFirebase(position)
+            //addDataToFirebase(position)
+            test()
+            addAnEventMode = false
+            addAnEventButton.backgroundColor = UIColor.whiteColor()
+            addEventInfo.hidden = false
+         appearFromBottom(self.addEventInfo,animationTime:1.0)
+            
+
         }
     }
-    func addDataToFirebase(position: CLLocationCoordinate2D){
+    func appearFromBottom(view: UIView, animationTime: Float){
+        var animation:CATransition = CATransition()
+        animation.duration = CFTimeInterval(animationTime)
+        animation.type = "moveIn"
+        animation.timingFunction = CAMediaTimingFunction(name:"easeInEaseOut")
+        animation.subtype = "fromBottom"
+        animation.fillMode = "forwards"
+        view.layer.addAnimation(animation, forKey: nil)
+    }
+    func test(){
+        var description = self.addEventInfo.routeDescriptionText.text;
+           print(description)
+    }
+    @IBAction func tapConfirmAddEvent(sender: AnyObject) {
+        var description = self.addEventInfo.routeDescriptionText.text;
+        var date = self.addEventInfo.dateTimePickerView.description
+        print(date)
+    }
+    
+    func addDataToFirebase(position: CLLocationCoordinate2D, routeDescription: NSString, duration: NSInteger){
         let location = ["latitude":position.latitude,"longtitude":position.longitude]
         let locationRef = self.ref.childByAutoId()
         locationRef.setValue(location)

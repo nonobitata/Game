@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-class AddEventView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
+class AddEventView: UIView,UIPickerViewDataSource,UIPickerViewDelegate,UITextViewDelegate {
     
     @IBOutlet var view: UIView!
-    @IBOutlet weak var routeDescriptionText: UITextView!
-    @IBOutlet weak var pickerActivateButton: UIButton!
+   
+    @IBOutlet weak var dateTimeText: UITextField!
     @IBOutlet weak var dateTimePickerView: UIPickerView!
-    @IBOutlet weak var addressText: UITextView!
+    @IBOutlet weak var routeDescriptionText: UITextView!
     var dateArray = ["Today","Tomorrow"];
     var hourArray = ["1","2","3","4","5","6","7","8","9","10","11","12"];
     var minuteArray = ["00","15","30","45"];
@@ -25,10 +25,28 @@ class AddEventView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
             super.init(coder: aDecoder)!
             NSBundle.mainBundle().loadNibNamed("AddEventView", owner: self, options: nil)
             self.addSubview(self.view);
+            self.routeDescriptionText.delegate = self
             self.dateTimePickerView.delegate = self
             self.dateTimePickerView.dataSource = self
-            self.dateTimePickerView.hidden = true
             
+            //setUpPickerView()
+    }
+    func setUpPickerView(){
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.Default
+        toolBar.translucent = true
+        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        toolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: "donePicker")
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: "donePicker")
+        
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar.userInteractionEnabled = true
+        
+        dateTimeText.inputView = self.dateTimePickerView
+        dateTimeText.inputAccessoryView = toolBar
     }
     // for this to work programmatically I had to do the same...
     override init(frame: CGRect) {
@@ -40,14 +58,7 @@ class AddEventView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
         self.dateTimePickerView.dataSource = self
         self.dateTimePickerView.hidden = true
     }
-    @IBAction func tapChoosingDateTime(sender: AnyObject) {
-        if (self.dateTimePickerView.hidden){
-            self.dateTimePickerView.hidden = false
-        }
-        else{
-            self.dateTimePickerView.hidden = true
-        }
-    }
+   
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch(component){
         case 0:
@@ -81,5 +92,12 @@ class AddEventView: UIView,UIPickerViewDataSource,UIPickerViewDelegate {
             break;
         }
         return 0;
+    }
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
     }
 }

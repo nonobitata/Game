@@ -11,7 +11,6 @@ import CoreLocation
 import GoogleMaps
 import Firebase
 
-
 class GymMapVC: UIViewController,GMSMapViewDelegate,CLLocationManagerDelegate {
 
     @IBOutlet weak var mapView: GMSMapView!

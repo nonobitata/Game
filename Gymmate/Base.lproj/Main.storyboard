@@ -33,41 +33,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ONa-v4-yfO" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="494"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tdC-Wh-1BE" customClass="AddEventView" customModule="Gymmate" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="360" width="600" height="240"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="75R-TI-0Q4" customClass="AddEventView" customModule="Gymmate" customModuleProvider="target">
-                                <rect key="frame" x="93" y="185" width="413" height="230"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vJG-ir-2nn">
-                                <rect key="frame" x="372" y="502" width="228" height="98"/>
-                                <color key="backgroundColor" red="1" green="0.9183532639103722" blue="0.82514575026074921" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="228" id="gMj-pX-ASS"/>
-                                </constraints>
-                                <state key="normal" title="NEXT"/>
-                                <connections>
-                                    <action selector="tapMoveToGymVC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3Yt-2d-FUh"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ONa-v4-yfO" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="FGV-9V-0re"/>
-                            <constraint firstItem="ONa-v4-yfO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Uvn-Qv-UlD"/>
-                            <constraint firstItem="vJG-ir-2nn" firstAttribute="top" secondItem="ONa-v4-yfO" secondAttribute="bottom" constant="8" symbolic="YES" id="YQr-Cq-z3g"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ONa-v4-yfO" secondAttribute="bottom" constant="106" id="ZMd-yI-yoE"/>
-                            <constraint firstAttribute="trailing" secondItem="ONa-v4-yfO" secondAttribute="trailing" id="fp9-lC-pw3"/>
-                            <constraint firstItem="vJG-ir-2nn" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="pYC-39-3eU"/>
-                            <constraint firstItem="vJG-ir-2nn" firstAttribute="trailing" secondItem="ONa-v4-yfO" secondAttribute="trailing" id="plj-ak-WQV"/>
+                            <constraint firstItem="tdC-Wh-1BE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Phb-hN-kkT"/>
+                            <constraint firstItem="tdC-Wh-1BE" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="b2E-Ui-1Li"/>
+                            <constraint firstItem="tdC-Wh-1BE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="296" id="qAn-Ho-Jjr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zYF-ZJ-mjZ"/>
                     <connections>
-                        <outlet property="addEventView" destination="75R-TI-0Q4" id="Qd0-Mj-Ard"/>
-                        <outlet property="mapView" destination="ONa-v4-yfO" id="BUa-pd-whh"/>
+                        <outlet property="addEventInfo" destination="tdC-Wh-1BE" id="FRq-QT-Khq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
