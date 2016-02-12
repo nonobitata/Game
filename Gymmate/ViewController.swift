@@ -12,22 +12,22 @@ import CoreLocation
 import GoogleMaps
 import Firebase
 
-
 class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDelegate {
-    
     
     lazy var mapView = GMSMapView()
     let addAnEventButton   = UIButton(type: UIButtonType.RoundedRect) as UIButton
     let moveToGymVCButton   = UIButton(type: UIButtonType.RoundedRect) as UIButton
-    var ref = Firebase(url: "https://gym8.firebaseio.com/listOfEvents/location/run")
-    
+    let ref = Firebase(url: "https://gym8.firebaseio.com/listOfEvents/location/run")
+    let addMarker = GMSMarker()
     var addAnEventMode = false;
+    var tapLocation = CLLocationCoordinate2D()
     let locationManager = CLLocationManager()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib
         mapInitialize()
-        
+
         addEventButtonInitialize()
         moveToGymVCButtonInitialize()
         
@@ -68,6 +68,7 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         self.moveToGymVCButton.addTarget(self, action: "tapMoveToGymVC:", forControlEvents: UIControlEvents.TouchUpInside)
         self.view.insertSubview(moveToGymVCButton, atIndex:1)
     }
+
     func mapInitialize(){
         
         self.mapView.delegate = self
@@ -88,12 +89,13 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
             let a  = snapshot.children
             for (child) in a.allObjects as![FDataSnapshot] {
                 let tempLatitude = child.value.objectForKey("latitude") as!CLLocationDegrees
-                let tempLongitude = child.value.objectForKey("longtitude") as! CLLocationDegrees
+                let tempLongitude = child.value.objectForKey("longitude") as! CLLocationDegrees
                 let coordinate = CLLocationCoordinate2D(latitude: tempLatitude, longitude: tempLongitude)
                 let  position = coordinate
                 let marker = GMSMarker(position: position)
                 marker.icon = GMSMarker.markerImageWithColor(UIColor.blackColor())
-                marker.title = "Hello World"
+                let routeDescription = child.value.objectForKey("routeDescription") as! String
+                marker.title = routeDescription
                 marker.map = self.mapView
                 
             }
@@ -127,16 +129,16 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
     func mapView(mapView: GMSMapView!, didLongPressAtCoordinate coordinate: CLLocationCoordinate2D) {
         if(addAnEventMode)
         {
+            let camera = GMSCameraPosition.cameraWithLatitude(coordinate.latitude-0.005, longitude: coordinate.longitude, zoom: 15)
+            mapView.camera = camera
             let  position = coordinate
-            let marker = GMSMarker(position: position)
-            marker.title = "Hello World"
-            marker.map = self.mapView
-            //addDataToFirebase(position)
+            addMarker.position =  position
+            addMarker.map = self.mapView
             
-            addAnEventMode = false
-            addAnEventButton.backgroundColor = UIColor.whiteColor()
+            self.addAnEventMode = false
+            self.addAnEventButton.backgroundColor = UIColor.whiteColor()
             createAnAddEventInfoView()
-
+            self.tapLocation = coordinate
         }
     }
  
@@ -171,16 +173,24 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         appearFromBottom(agree,animationTime:0.15)
 
     }
-    @IBAction func tapConfirmAddEvent(sender: AnyObject) {
-        
-
-    }
     @IBAction func agreeAddEvent(sender: AnyObject) {
         let viewWithTag = self.view.viewWithTag(2) as! AddEventView
-        print(viewWithTag.routeDescriptionText.text)
+        addDataToFirebase(tapLocation, routeDescription: viewWithTag.routeDescriptionText.text)
+        let dateRow = viewWithTag.dateTimePickerView.selectedRowInComponent(0)
+        let hourRow =   viewWithTag.dateTimePickerView.selectedRowInComponent(1)
+        let minuteRow =  viewWithTag.dateTimePickerView.selectedRowInComponent(2)
+        let ampmRow =  viewWithTag.dateTimePickerView.selectedRowInComponent(3)
+        print(viewWithTag.dateArray[dateRow],viewWithTag.hourArray[hourRow],
+            viewWithTag.minuteArray[minuteRow],viewWithTag.ampmArray[ampmRow])
+        
+        
+        
+        dismissAllAddView()
     }
-    
-    @IBAction func cancelAddEvent(sender: AnyObject) {
+    func dismissAllAddView(){
+        addMarker.map = nil
+
+        
         if let viewWithTag = self.view.viewWithTag(1) {
             viewWithTag.removeFromSuperview()
         }else{
@@ -188,25 +198,19 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         }
         for index in 2...4{
             if let viewWithTag = self.view.viewWithTag(index) {
-                    disapprearToBottom(viewWithTag,animationTime: 1)
-        }
-//        if let viewWithTag = self.view.viewWithTag(200) {
-//            disapprearToBottom(viewWithTag,animationTime: 1)
-//        }else{
-//            print("No!")
-//        }
-//        if let viewWithTag = self.view.viewWithTag(300) {
-//            disapprearToBottom(viewWithTag,animationTime: 1)
-//        }else{
-//            print("No!")
-//        }
+                disapprearToBottom(viewWithTag,animationTime: 1)
+            }
         }
     }
+    @IBAction func cancelAddEvent(sender: AnyObject) {
+        dismissAllAddView()
+
+    }
     
-    func addDataToFirebase(position: CLLocationCoordinate2D, routeDescription: NSString, duration: NSInteger){
-        let location = ["latitude":position.latitude,"longtitude":position.longitude]
+    func addDataToFirebase(position: CLLocationCoordinate2D, routeDescription: NSString){
+        let info = ["latitude":position.latitude,"longitude":position.longitude,"routeDescription":routeDescription]
         let locationRef = self.ref.childByAutoId()
-        locationRef.setValue(location)
+        locationRef.setValue(info)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -217,6 +221,7 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         let camera = GMSCameraPosition.cameraWithLatitude(location!.coordinate.latitude, longitude: location!.coordinate.longitude, zoom: 15)
         //        let region = MKCoordinateRegion(center: center , span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
         mapView.camera = camera
+        
         self.locationManager.stopUpdatingLocation()
     }
     func appearFromBottom(view: UIView, animationTime: Float){
