@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="infoWindowMapView" customModule="Gymmate" customModuleProvider="target">
+            <connections>
+                <outlet property="nameActivityLabel" destination="pct-Ds-8mb" id="xtA-Qu-sma"/>
+                <outlet property="view" destination="JkS-EW-pHf" id="t3W-le-2iQ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="JkS-EW-pHf">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pct-Ds-8mb">
+                    <rect key="frame" x="8" y="0.0" width="284" height="56"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="pct-Ds-8mb" firstAttribute="top" secondItem="JkS-EW-pHf" secondAttribute="top" id="25P-kx-WKa"/>
+                <constraint firstAttribute="trailing" secondItem="pct-Ds-8mb" secondAttribute="trailing" constant="8" id="DpO-eE-XZW"/>
+                <constraint firstItem="pct-Ds-8mb" firstAttribute="top" secondItem="JkS-EW-pHf" secondAttribute="top" id="LEt-aB-CKh"/>
+                <constraint firstAttribute="trailing" secondItem="pct-Ds-8mb" secondAttribute="trailing" id="R8x-03-hyv"/>
+                <constraint firstItem="pct-Ds-8mb" firstAttribute="leading" secondItem="JkS-EW-pHf" secondAttribute="leading" id="UjJ-Ub-W5t"/>
+                <constraint firstItem="pct-Ds-8mb" firstAttribute="leading" secondItem="JkS-EW-pHf" secondAttribute="leading" constant="8" id="mwf-mF-Bp2"/>
+                <constraint firstAttribute="bottom" secondItem="pct-Ds-8mb" secondAttribute="bottom" constant="244" id="vH5-Ly-4dZ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="482" y="16"/>
+        </view>
+    </objects>
+</document>

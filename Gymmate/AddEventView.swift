@@ -76,9 +76,9 @@ class AddEventView: UIView,UIPickerViewDataSource,UIPickerViewDelegate,UITextVie
         self.currentTime = "HH:MM"
         
         let hour = components.hour
+        print(hour)
         
-        
-        if (hour >= 10){
+        if (hour >= 23){
             dateArray.append("Tomorrow")
         }
         else
@@ -87,7 +87,7 @@ class AddEventView: UIView,UIPickerViewDataSource,UIPickerViewDelegate,UITextVie
             dateArray.append("Tomorrow")
         }
         
-        for i in 0...11{
+        for i in 0...23{
             var k: Int = 0;
             let tempHour: String = String(i)
             while(k < 60){
@@ -100,9 +100,9 @@ class AddEventView: UIView,UIPickerViewDataSource,UIPickerViewDelegate,UITextVie
                 k += 15
             }
         }
-    
+        selectedDate = "Tomorrow"
         if (dateArray.count == 2){
-            for i in hour+1...11{
+            for i in hour+1...23{
                 var k: Int = 0;
                 let tempHour: String = String(i)
                 while(k < 60){
@@ -116,12 +116,22 @@ class AddEventView: UIView,UIPickerViewDataSource,UIPickerViewDelegate,UITextVie
                     k += 15
                 }
             }
+            selectedDate = "Today"
             
         }
         
         
+        
 }
-    
+    private func addBottomLineToTextField(textField : UITextView) {
+        let border = CALayer()
+        let borderWidth = CGFloat(1.0)
+        border.borderColor = UIColor.whiteColor().CGColor
+        border.frame = CGRectMake(0, textField.frame.size.height - borderWidth, textField.frame.size.width, textField.frame.size.height)
+        border.borderWidth = borderWidth
+        textField.layer.addSublayer(border)
+        textField.layer.masksToBounds = true
+    }
     // for this to work programmatically I had to do the same...
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -182,11 +192,12 @@ class AddEventView: UIView,UIPickerViewDataSource,UIPickerViewDelegate,UITextVie
         case 0:
             return dateArray.count;
         case 1:
-            if (selectedDate == "Today"){
-                return timeTodayArray.count
+            if (selectedDate == "Tomorrow"){
+                return timeFullArray.count
             }
             else{
-                return timeFullArray.count
+                return timeTodayArray.count
+
             }
         default:
             break;
@@ -220,6 +231,8 @@ class AddEventView: UIView,UIPickerViewDataSource,UIPickerViewDelegate,UITextVie
     func setUp(){
         view = loadViewFromNib()
         view.frame = bounds
+        self.addBottomLineToTextField(self.routeDescriptionText)
+
         self.addSubview(self.view);
         setUpDateTimeArray()
         

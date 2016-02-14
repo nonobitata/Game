@@ -16,7 +16,6 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
     
     lazy var mapView = GMSMapView()
     let addAnEventButton   = UIButton(type: UIButtonType.RoundedRect) as UIButton
-    let moveToGymVCButton   = UIButton(type: UIButtonType.RoundedRect) as UIButton
     let ref = Firebase(url: "https://gym8.firebaseio.com/listOfEvents/location/run")
     let addMarker = GMSMarker()
     var addAnEventMode = false;
@@ -29,30 +28,23 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         mapInitialize()
 
         addEventButtonInitialize()
-        moveToGymVCButtonInitialize()
         
         
        // self.navigationController?.setNavigationBarHidden(true, animated: true)
-        
+        self.tabBarController?.title = "Maps"
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
     }
-    func keyboardWillShow(notification: NSNotification) {
-        
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            self.view.frame.origin.y -= keyboardSize.height
-        }
-        
-    }
+  
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
     
-    func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            self.view.frame.origin.y += keyboardSize.height
-        }
+    func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
+        let a = CGRect(x:0, y:0, width:(self.view.frame.width/3),height: (self.view.frame.width/3))
+        let markerInfoWindow = infoWindowMapView(frame:a)
+        return markerInfoWindow
     }
     func addEventButtonInitialize(){
         self.addAnEventButton.frame = CGRectMake(20 , 70, 50, 50)
@@ -63,15 +55,7 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         
     }
     
-    func moveToGymVCButtonInitialize(){
-
-        self.moveToGymVCButton.frame = CGRectMake(self.mapView.frame.width/2,self.mapView.frame.height, self.view.frame.width/2,(self.view.frame.height)/4)
-        self.moveToGymVCButton.backgroundColor = UIColor.grayColor()
-
-        self.moveToGymVCButton.setTitle("Next", forState: UIControlState.Normal)
-        self.moveToGymVCButton.addTarget(self, action: "tapMoveToGymVC:", forControlEvents: UIControlEvents.TouchUpInside)
-        self.view.insertSubview(moveToGymVCButton, atIndex:1)
-    }
+    
 
     func mapInitialize(){
         
@@ -81,7 +65,7 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
-        self.mapView.frame = CGRectMake(0,0, self.view.frame.width,(self.view.frame.height*3)/4)
+        self.mapView.frame = CGRectMake(0,0, self.view.frame.width,(self.view.frame.height-(self.tabBarController?.tabBar.frame.size.height)!))
         self.mapView.myLocationEnabled = true
         self.mapView.settings.myLocationButton = true
         self.mapView.settings.compassButton = true
@@ -122,11 +106,7 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
             
         }
     }
-    @IBAction func tapMoveToGymVC(sender: AnyObject) {
-        let gymVC = self.storyboard?.instantiateViewControllerWithIdentifier("GymVC") as? GymMapVC
-        print("a")
-        self.navigationController?.pushViewController(gymVC!, animated: true)
-    }
+    
     func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
         NSLog("You tapped at \(coordinate.latitude), \(coordinate.longitude)")
     }
@@ -145,7 +125,7 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
             self.tapLocation = coordinate
         }
     }
- 
+    
     func createAnAddEventInfoView(){
         let blurView = UIView(frame:CGRect(x:0, y:0, width:self.view.frame.width,height: self.view.frame.height))
         blurView.backgroundColor = UIColor.whiteColor()
@@ -153,7 +133,7 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         blurView.tag = 1
         self.view.insertSubview(blurView, atIndex: 3)
         
-        let addInfo = AddEventView(frame:CGRect(x:0, y:self.view.frame.height/2, width:self.view.frame.width,height: self.view.frame.height/2))
+        let addInfo = AddEventView(frame:CGRect(x:0, y:self.view.frame.height/2-(self.tabBarController?.tabBar.frame.size.height)!, width:self.view.frame.width,height: self.view.frame.height/2+(self.tabBarController?.tabBar.frame.size.height)!))
         addInfo.tag = 2
         addInfo.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
         self.view.insertSubview(addInfo, atIndex:4)
