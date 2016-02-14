@@ -5,10 +5,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--NavigationVC-->
         <scene sceneID="OWb-yo-VEU">
             <objects>
-                <navigationController id="hXy-Cy-UKz" sceneMemberID="viewController">
+                <navigationController id="hXy-Cy-UKz" customClass="NavigationVC" customModule="Gymmate" customModuleProvider="target" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="feA-Wf-1Kl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -21,20 +22,11 @@
             </objects>
             <point key="canvasLocation" x="-548" y="87"/>
         </scene>
-        <!--View Controller-->
+        <!--Gymmate-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="RunVC" id="BYZ-38-t0r" customClass="ViewController" customModule="Gymmate" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="zYF-ZJ-mjZ"/>
+                    <navigationItem key="navigationItem" title="Gymmate" id="zYF-ZJ-mjZ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -52,10 +44,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SGZ-ZS-tSV" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="494"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rv1-2q-0l2">
                                 <rect key="frame" x="0.0" y="502" width="228" height="98"/>
                                 <color key="backgroundColor" red="1" green="0.91835326390000005" blue="0.82514575030000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -71,17 +59,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="SGZ-ZS-tSV" firstAttribute="leading" secondItem="Rv1-2q-0l2" secondAttribute="leading" id="CH2-r2-6mV"/>
-                            <constraint firstItem="Rv1-2q-0l2" firstAttribute="top" secondItem="SGZ-ZS-tSV" secondAttribute="bottom" constant="8" symbolic="YES" id="Np1-6N-ppn"/>
-                            <constraint firstItem="SGZ-ZS-tSV" firstAttribute="top" secondItem="Mlm-dq-bzI" secondAttribute="top" id="hIT-t1-RxE"/>
                             <constraint firstItem="Rv1-2q-0l2" firstAttribute="bottom" secondItem="oGq-LR-y6p" secondAttribute="top" id="hgT-tq-RfD"/>
                             <constraint firstItem="Rv1-2q-0l2" firstAttribute="leading" secondItem="Mlm-dq-bzI" secondAttribute="leading" id="mbg-Qp-XEU"/>
-                            <constraint firstAttribute="trailing" secondItem="SGZ-ZS-tSV" secondAttribute="trailing" id="pzc-bz-WF5"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="mapView" destination="SGZ-ZS-tSV" id="eKz-Ct-b6v"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yiX-lu-jAE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

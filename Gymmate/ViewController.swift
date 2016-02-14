@@ -31,11 +31,11 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         addEventButtonInitialize()
         moveToGymVCButtonInitialize()
         
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
+       // self.navigationController?.setNavigationBarHidden(true, animated: true)
         
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
     }
     func keyboardWillShow(notification: NSNotification) {
         
@@ -43,6 +43,10 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
             self.view.frame.origin.y -= keyboardSize.height
         }
         
+    }
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     func keyboardWillHide(notification: NSNotification) {
@@ -151,6 +155,7 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         
         let addInfo = AddEventView(frame:CGRect(x:0, y:self.view.frame.height/2, width:self.view.frame.width,height: self.view.frame.height/2))
         addInfo.tag = 2
+        addInfo.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
         self.view.insertSubview(addInfo, atIndex:4)
         appearFromBottom(addInfo,animationTime:0.15)
         
@@ -176,12 +181,6 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
     @IBAction func agreeAddEvent(sender: AnyObject) {
         let viewWithTag = self.view.viewWithTag(2) as! AddEventView
         addDataToFirebase(tapLocation, routeDescription: viewWithTag.routeDescriptionText.text)
-        let dateRow = viewWithTag.dateTimePickerView.selectedRowInComponent(0)
-        let hourRow =   viewWithTag.dateTimePickerView.selectedRowInComponent(1)
-        let minuteRow =  viewWithTag.dateTimePickerView.selectedRowInComponent(2)
-        let ampmRow =  viewWithTag.dateTimePickerView.selectedRowInComponent(3)
-        print(viewWithTag.dateArray[dateRow],viewWithTag.hourArray[hourRow],
-            viewWithTag.minuteArray[minuteRow],viewWithTag.ampmArray[ampmRow])
         
         
         
