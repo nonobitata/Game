@@ -528,6 +528,8 @@
 					"\"${PODS_ROOT}/GoogleMaps/Frameworks\"",
 					"\"${PODS_ROOT}/Firebase\"",
 					"\"${PODS_ROOT}/GeoFire\"",
+					"-Obj",
+					C,
 				);
 				INFOPLIST_FILE = Gymmate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -546,6 +548,8 @@
 					"\"${PODS_ROOT}/GoogleMaps/Frameworks\"",
 					"\"${PODS_ROOT}/Firebase\"",
 					"\"${PODS_ROOT}/GeoFire\"",
+					"-Obj",
+					C,
 				);
 				INFOPLIST_FILE = Gymmate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

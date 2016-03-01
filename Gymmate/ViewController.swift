@@ -11,6 +11,7 @@ import MapKit
 import CoreLocation
 import GoogleMaps
 import Firebase
+import GeoFire
 
 class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDelegate {
     
@@ -28,8 +29,9 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         mapInitialize()
 
         addEventButtonInitialize()
-        
-        
+        let ref2 = Firebase(url: "https://gym8.firebaseio.com/")
+        let geoFire = GeoFire(firebaseRef: ref2)
+       
        // self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.tabBarController?.title = "Maps"
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
@@ -42,8 +44,8 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
     }
     
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
-        let a = CGRect(x:0, y:0, width:(self.view.frame.width/3),height: (self.view.frame.width/3))
-        let markerInfoWindow = infoWindowMapView(frame:a)
+        
+        let markerInfoWindow = infoWindowMapView(frame:CGRect(x: 0, y: 0, width: 200, height: 100))
         return markerInfoWindow
     }
     func addEventButtonInitialize(){
@@ -83,6 +85,7 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
                 let marker = GMSMarker(position: position)
                 marker.icon = GMSMarker.markerImageWithColor(UIColor.blackColor())
                 let routeDescription = child.value.objectForKey("routeDescription") as! String
+                marker.appearAnimation = kGMSMarkerAnimationPop
                 marker.title = routeDescription
                 marker.map = self.mapView
                 

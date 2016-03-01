@@ -12,9 +12,10 @@ import UIKit
 
 class infoWindowMapView: UIView {
 
-    @IBOutlet var view: UIView!
     @IBOutlet weak var nameActivityLabel: UILabel!
     
+    @IBOutlet var view: UIView!
+
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         setUp()
@@ -29,8 +30,9 @@ class infoWindowMapView: UIView {
     func setUp(){
         view = loadViewFromNib()
         view.frame = bounds
+        view.autoresizingMask = [UIViewAutoresizing.FlexibleWidth,UIViewAutoresizing.FlexibleHeight]
         
-        self.addSubview(self.view);
+        addSubview(view);
         
           }
     func loadViewFromNib()->UIView

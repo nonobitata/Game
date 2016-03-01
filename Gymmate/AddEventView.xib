@@ -133,10 +133,5 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="155" y="272"/>
         </view>
-        <pickerView contentMode="scaleToFill" id="RVa-nS-NHl">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-            <point key="canvasLocation" x="247" y="116"/>
-        </pickerView>
     </objects>
 </document>
