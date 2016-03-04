@@ -15,6 +15,7 @@ class infoWindowMapView: UIView {
     @IBOutlet weak var nameActivityLabel: UILabel!
     
     @IBOutlet var view: UIView!
+    @IBOutlet weak var button: UIButton!
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -26,6 +27,9 @@ class infoWindowMapView: UIView {
     
         setUp()
         
+    }
+    @IBAction func touchJoinEvent(sender: AnyObject) {
+        print("haha")
     }
     func setUp(){
         view = loadViewFromNib()

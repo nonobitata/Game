@@ -8,17 +8,18 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="infoWindowMapView" customModule="Gymmate" customModuleProvider="target">
             <connections>
+                <outlet property="button" destination="cbN-aK-91o" id="NuS-KY-vDB"/>
                 <outlet property="nameActivityLabel" destination="pct-Ds-8mb" id="xtA-Qu-sma"/>
                 <outlet property="view" destination="JkS-EW-pHf" id="t3W-le-2iQ"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clipsSubviews="YES" contentMode="scaleToFill" id="JkS-EW-pHf">
-            <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
+        <view contentMode="scaleToFill" id="JkS-EW-pHf">
+            <rect key="frame" x="0.0" y="0.0" width="230" height="120"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pct-Ds-8mb">
-                    <rect key="frame" x="8" y="14" width="184" height="39"/>
+                    <rect key="frame" x="8" y="14" width="214" height="39"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="39" id="vfu-oI-EqR"/>
                     </constraints>
@@ -26,25 +27,36 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePq-dq-5FS">
-                    <rect key="frame" x="8" y="53" width="184" height="39"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbN-aK-91o">
+                    <rect key="frame" x="73" y="82" width="85" height="30"/>
+                    <color key="backgroundColor" red="1" green="0.35778146268710065" blue="0.29354918453695911" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                    <state key="normal" title="Join"/>
+                    <connections>
+                        <action selector="touchJoinEvent:" destination="-1" eventType="touchUpInside" id="Z86-Yh-Xan"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="ePq-dq-5FS" firstAttribute="bottom" secondItem="JkS-EW-pHf" secondAttribute="bottomMargin" id="3t5-e7-hNN"/>
+                <constraint firstItem="pct-Ds-8mb" firstAttribute="trailing" secondItem="JkS-EW-pHf" secondAttribute="trailingMargin" id="4XO-b6-gdg"/>
                 <constraint firstItem="pct-Ds-8mb" firstAttribute="top" secondItem="JkS-EW-pHf" secondAttribute="top" constant="14" id="50L-4y-YfU"/>
-                <constraint firstItem="ePq-dq-5FS" firstAttribute="top" secondItem="pct-Ds-8mb" secondAttribute="bottom" id="69s-UX-yP5"/>
+                <constraint firstItem="pct-Ds-8mb" firstAttribute="leading" secondItem="JkS-EW-pHf" secondAttribute="leadingMargin" id="9sz-7r-Jc3"/>
+                <constraint firstItem="cbN-aK-91o" firstAttribute="top" secondItem="pct-Ds-8mb" secondAttribute="bottom" constant="29" id="Bpw-5R-Gce"/>
+                <constraint firstItem="cbN-aK-91o" firstAttribute="bottom" secondItem="JkS-EW-pHf" secondAttribute="bottomMargin" id="Lgd-lc-YEL"/>
                 <constraint firstItem="pct-Ds-8mb" firstAttribute="trailing" secondItem="JkS-EW-pHf" secondAttribute="trailingMargin" id="atn-Jb-85E"/>
-                <constraint firstItem="ePq-dq-5FS" firstAttribute="leading" secondItem="pct-Ds-8mb" secondAttribute="leading" id="nYH-iS-F1U"/>
+                <constraint firstItem="cbN-aK-91o" firstAttribute="leading" secondItem="JkS-EW-pHf" secondAttribute="leading" constant="73" id="eDy-D6-fEc"/>
                 <constraint firstItem="pct-Ds-8mb" firstAttribute="leading" secondItem="JkS-EW-pHf" secondAttribute="leadingMargin" id="oJT-zc-Evd"/>
-                <constraint firstItem="pct-Ds-8mb" firstAttribute="trailing" secondItem="ePq-dq-5FS" secondAttribute="trailing" id="p9h-9h-coq"/>
+                <constraint firstItem="cbN-aK-91o" firstAttribute="centerX" secondItem="pct-Ds-8mb" secondAttribute="centerX" id="oTA-hR-hOx"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="553" y="76"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="atn-Jb-85E"/>
+                    <exclude reference="oJT-zc-Evd"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="553" y="77"/>
         </view>
     </objects>
 </document>

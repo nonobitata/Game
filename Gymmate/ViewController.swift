@@ -17,25 +17,25 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
     
     lazy var mapView = GMSMapView()
     let addAnEventButton   = UIButton(type: UIButtonType.RoundedRect) as UIButton
-    let ref = Firebase(url: "https://gym8.firebaseio.com/listOfEvents/location/run")
+    let ref = Firebase(url: "https://gym8.firebaseio.com/listOfEvents/location")
     let addMarker = GMSMarker()
     var addAnEventMode = false;
     var tapLocation = CLLocationCoordinate2D()
     let locationManager = CLLocationManager()
+    var routeDescription = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib
-        mapInitialize()
 
         addEventButtonInitialize()
-        let ref2 = Firebase(url: "https://gym8.firebaseio.com/")
-        let geoFire = GeoFire(firebaseRef: ref2)
        
        // self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.tabBarController?.title = "Maps"
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
+        mapInitialize()
+
     }
   
     func dismissKeyboard() {
@@ -45,8 +45,12 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
     
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
         
-        let markerInfoWindow = infoWindowMapView(frame:CGRect(x: 0, y: 0, width: 200, height: 100))
+        let markerInfoWindow = infoWindowMapView(frame:CGRect(x: 0, y: 0, width: 230, height: 120))
+        markerInfoWindow.nameActivityLabel.text = marker.title
         return markerInfoWindow
+    }
+    func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
+        print("haha")
     }
     func addEventButtonInitialize(){
         self.addAnEventButton.frame = CGRectMake(20 , 70, 50, 50)
@@ -74,8 +78,20 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         self.mapView.settings.consumesGesturesInView = false
         self.view.insertSubview(mapView, atIndex: 0)
         
+        let current = NSDate()
+        let today = current.toDate() 
+        var nextDate = NSDate()
+        nextDate = current.dateByAddingTimeInterval(60*60*24*1)
+        let nextDateText = nextDate.toDate()
+        initializeLocations(today)
+        initializeLocations(nextDateText)
+        
 
-        ref.observeEventType(.Value, withBlock: { snapshot in
+    
+    }
+    func initializeLocations(date:String!){
+        let tempRef = ref.childByAppendingPath(date)
+        tempRef.observeEventType(.Value, withBlock: { snapshot in
             let a  = snapshot.children
             for (child) in a.allObjects as![FDataSnapshot] {
                 let tempLatitude = child.value.objectForKey("latitude") as!CLLocationDegrees
@@ -84,18 +100,17 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
                 let  position = coordinate
                 let marker = GMSMarker(position: position)
                 marker.icon = GMSMarker.markerImageWithColor(UIColor.blackColor())
-                let routeDescription = child.value.objectForKey("routeDescription") as! String
+                self.routeDescription = child.value.objectForKey("routeDescription") as! String
                 marker.appearAnimation = kGMSMarkerAnimationPop
-                marker.title = routeDescription
+                marker.title = self.routeDescription
                 marker.map = self.mapView
                 
             }
             
-
-            
-        }, withCancelBlock: { error in
+            }, withCancelBlock: { error in
                 print(error.description)
         })
+
     }
     @IBAction func tapAddEvent(sender: AnyObject) {
         if (!addAnEventMode){
@@ -159,14 +174,13 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         agree.addTarget(self, action: "agreeAddEvent:", forControlEvents: UIControlEvents.TouchUpInside)
         self.view.insertSubview(agree, atIndex:6)
         appearFromBottom(agree,animationTime:0.15)
-
+       
     }
     @IBAction func agreeAddEvent(sender: AnyObject) {
-        let viewWithTag = self.view.viewWithTag(2) as! AddEventView
-        addDataToFirebase(tapLocation, routeDescription: viewWithTag.routeDescriptionText.text)
-        
-        
-        
+        let addView = self.view.viewWithTag(2) as! AddEventView
+        let info = ["latitude":tapLocation.latitude,"longitude":tapLocation.longitude,"routeDescription":addView.routeDescriptionText.text,"type":addView.currentActivity,"date":addView.currentDate, "time":addView.currentTime]
+        addDataToFirebase(info)
+    
         dismissAllAddView()
     }
     func dismissAllAddView(){
@@ -189,10 +203,11 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
 
     }
     
-    func addDataToFirebase(position: CLLocationCoordinate2D, routeDescription: NSString){
-        let info = ["latitude":position.latitude,"longitude":position.longitude,"routeDescription":routeDescription]
-        let locationRef = self.ref.childByAutoId()
-        locationRef.setValue(info)
+    func addDataToFirebase(setOfData:NSDictionary){
+        let activityType = setOfData.objectForKey("date") as! String
+        let activityRef = self.ref.childByAppendingPath(activityType)
+        let locationRef = activityRef.childByAutoId()
+        locationRef.setValue(setOfData)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
