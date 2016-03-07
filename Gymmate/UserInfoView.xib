@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserInfoView">
+            <connections>
+                <outlet property="userImage" destination="MgK-IN-lbP" id="BBr-LY-h2L"/>
+                <outlet property="userName" destination="15E-xk-pbm" id="4ne-Nn-6YS"/>
+                <outlet property="view" destination="BXC-a8-esJ" id="mAr-PK-cMf"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="BXC-a8-esJ">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MgK-IN-lbP">
+                    <rect key="frame" x="8" y="47" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="Hoi-mb-ve3"/>
+                        <constraint firstAttribute="height" constant="100" id="Ias-Mj-UED"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="15E-xk-pbm">
+                    <rect key="frame" x="116" y="52" width="251" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="37" id="v4B-Dg-2uR"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="15E-xk-pbm" firstAttribute="leading" secondItem="MgK-IN-lbP" secondAttribute="trailing" constant="8" symbolic="YES" id="13M-5h-R8z"/>
+                <constraint firstItem="MgK-IN-lbP" firstAttribute="leading" secondItem="BXC-a8-esJ" secondAttribute="leadingMargin" id="5E5-2o-2cJ"/>
+                <constraint firstItem="15E-xk-pbm" firstAttribute="top" secondItem="BXC-a8-esJ" secondAttribute="top" constant="52" id="RHN-WI-gwd"/>
+                <constraint firstItem="15E-xk-pbm" firstAttribute="trailing" secondItem="BXC-a8-esJ" secondAttribute="trailingMargin" id="mNI-SB-9VI"/>
+                <constraint firstItem="MgK-IN-lbP" firstAttribute="top" secondItem="BXC-a8-esJ" secondAttribute="top" constant="47" id="qWx-N2-EXy"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="304.5" y="321.5"/>
+        </view>
+    </objects>
+</document>

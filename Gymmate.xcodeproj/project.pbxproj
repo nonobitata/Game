@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02280B211C898ACB002D22B1 /* LoginIntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02280B201C898ACB002D22B1 /* LoginIntroVC.swift */; };
-		02280B231C898B03002D22B1 /* LoginIntroVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02280B221C898B03002D22B1 /* LoginIntroVC.xib */; };
+		0212ACC21C8D4B730007E6A4 /* UserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0212ACC11C8D4B730007E6A4 /* UserInfoView.xib */; };
+		0212ACC41C8D4B800007E6A4 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0212ACC31C8D4B800007E6A4 /* UserInfoView.swift */; };
+		02280B211C898ACB002D22B1 /* LoginIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02280B201C898ACB002D22B1 /* LoginIntroView.swift */; };
+		02280B231C898B03002D22B1 /* LoginIntroView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02280B221C898B03002D22B1 /* LoginIntroView.xib */; };
 		023719881C707F6100D6C236 /* shareCodeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023719871C707F6100D6C236 /* shareCodeExtension.swift */; };
 		0237198A1C708BE500D6C236 /* SF-UI-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 023719891C708BE500D6C236 /* SF-UI-Display-Regular.otf */; };
 		0237198D1C708D0D00D6C236 /* SF-UI-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0237198C1C708D0D00D6C236 /* SF-UI-Display-Semibold.otf */; };
@@ -49,8 +51,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		02280B201C898ACB002D22B1 /* LoginIntroVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginIntroVC.swift; sourceTree = "<group>"; };
-		02280B221C898B03002D22B1 /* LoginIntroVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginIntroVC.xib; sourceTree = "<group>"; };
+		0212ACC11C8D4B730007E6A4 /* UserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoView.xib; sourceTree = "<group>"; };
+		0212ACC31C8D4B800007E6A4 /* UserInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
+		02280B201C898ACB002D22B1 /* LoginIntroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginIntroView.swift; sourceTree = "<group>"; };
+		02280B221C898B03002D22B1 /* LoginIntroView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginIntroView.xib; sourceTree = "<group>"; };
 		023719871C707F6100D6C236 /* shareCodeExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shareCodeExtension.swift; sourceTree = "<group>"; };
 		023719891C708BE500D6C236 /* SF-UI-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Regular.otf"; sourceTree = "<group>"; };
 		0237198C1C708D0D00D6C236 /* SF-UI-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Semibold.otf"; sourceTree = "<group>"; };
@@ -108,6 +112,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0212ACC51C8D4CEF0007E6A4 /* MapInfoWindow */ = {
+			isa = PBXGroup;
+			children = (
+				026173A11C71353D00F31C69 /* infoWindowMapView.swift */,
+				026173A31C71355E00F31C69 /* infoWindowMapView.xib */,
+			);
+			name = MapInfoWindow;
+			sourceTree = "<group>";
+		};
 		02A685A21C6335FA00946810 = {
 			isa = PBXGroup;
 			children = (
@@ -135,16 +148,17 @@
 			children = (
 				02A685AE1C6335FA00946810 /* AppDelegate.swift */,
 				02A685B21C6335FA00946810 /* Main.storyboard */,
-				02280B201C898ACB002D22B1 /* LoginIntroVC.swift */,
-				02280B221C898B03002D22B1 /* LoginIntroVC.xib */,
-				026173A11C71353D00F31C69 /* infoWindowMapView.swift */,
-				026173A31C71355E00F31C69 /* infoWindowMapView.xib */,
-				0237198E1C7091FA00D6C236 /* NavigationVC.swift */,
 				02A685B01C6335FA00946810 /* ViewController.swift */,
+				02280B201C898ACB002D22B1 /* LoginIntroView.swift */,
+				02280B221C898B03002D22B1 /* LoginIntroView.xib */,
+				0237198E1C7091FA00D6C236 /* NavigationVC.swift */,
 				0261739F1C711C7A00F31C69 /* UserInformationVC.swift */,
+				0212ACC11C8D4B730007E6A4 /* UserInfoView.xib */,
+				0212ACC31C8D4B800007E6A4 /* UserInfoView.swift */,
 				028111F41C6488DA007DE964 /* AddEventView.swift */,
 				028111F61C64891C007DE964 /* AddEventView.xib */,
 				023719871C707F6100D6C236 /* shareCodeExtension.swift */,
+				0212ACC51C8D4CEF0007E6A4 /* MapInfoWindow */,
 				02A685B81C6335FA00946810 /* Assets.xcassets */,
 				02A685BA1C6335FA00946810 /* LaunchScreen.storyboard */,
 				02A685BD1C6335FA00946810 /* Info.plist */,
@@ -300,9 +314,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				02A685BC1C6335FA00946810 /* LaunchScreen.storyboard in Resources */,
+				0212ACC21C8D4B730007E6A4 /* UserInfoView.xib in Resources */,
 				02A685B91C6335FA00946810 /* Assets.xcassets in Resources */,
 				026173A41C71355E00F31C69 /* infoWindowMapView.xib in Resources */,
-				02280B231C898B03002D22B1 /* LoginIntroVC.xib in Resources */,
+				02280B231C898B03002D22B1 /* LoginIntroView.xib in Resources */,
 				0237198D1C708D0D00D6C236 /* SF-UI-Display-Semibold.otf in Resources */,
 				0237198A1C708BE500D6C236 /* SF-UI-Display-Regular.otf in Resources */,
 				026173A81C713A3100F31C69 /* markerInfoWindow.png in Resources */,
@@ -384,11 +399,12 @@
 				0237198F1C7091FA00D6C236 /* NavigationVC.swift in Sources */,
 				028111F51C6488DA007DE964 /* AddEventView.swift in Sources */,
 				02A685B71C6335FA00946810 /* Gymmate.xcdatamodeld in Sources */,
-				02280B211C898ACB002D22B1 /* LoginIntroVC.swift in Sources */,
+				02280B211C898ACB002D22B1 /* LoginIntroView.swift in Sources */,
 				02A685B11C6335FA00946810 /* ViewController.swift in Sources */,
 				023719881C707F6100D6C236 /* shareCodeExtension.swift in Sources */,
 				02A685AF1C6335FA00946810 /* AppDelegate.swift in Sources */,
 				026173A21C71353D00F31C69 /* infoWindowMapView.swift in Sources */,
+				0212ACC41C8D4B800007E6A4 /* UserInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
