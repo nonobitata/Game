@@ -23,7 +23,8 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
     var tapLocation = CLLocationCoordinate2D()
     let locationManager = CLLocationManager()
     var routeDescription = String()
-
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib
@@ -32,6 +33,7 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
        
        // self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.tabBarController?.title = "Maps"
+
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
         mapInitialize()
@@ -46,14 +48,18 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
         
         let markerInfoWindow = infoWindowMapView(frame:CGRect(x: 0, y: 0, width: 230, height: 120))
-        markerInfoWindow.nameActivityLabel.text = marker.title
+        markerInfoWindow.setUpInformation( marker.title , eventID:marker.userData["eventID"] as! String, date: marker.userData["date"] as! String, time:marker.userData["time"] as! String)
+      
         return markerInfoWindow
     }
     func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
         print("haha")
+        moveToEventDescriptionVC(marker.userData["date"] as! String
+            , eventID: marker.userData["eventID"] as! String)
+        
     }
     func addEventButtonInitialize(){
-        self.addAnEventButton.frame = CGRectMake(20 , 70, 50, 50)
+        self.addAnEventButton.frame = CGRectMake(20 , 20+66, 50, 50)
         self.addAnEventButton.backgroundColor = UIColor.whiteColor()
         self.addAnEventButton.setTitle("Add", forState: UIControlState.Normal)
         self.addAnEventButton.addTarget(self, action: "tapAddEvent:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -94,6 +100,12 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         tempRef.observeEventType(.Value, withBlock: { snapshot in
             let a  = snapshot.children
             for (child) in a.allObjects as![FDataSnapshot] {
+                print(child.key)
+                var myData = Dictionary<String, String>()
+                myData["eventID"] = child.key
+                myData["date"] = child.value.objectForKey("date") as? String
+                myData["time"] = child.value.objectForKey("time") as? String
+
                 let tempLatitude = child.value.objectForKey("latitude") as!CLLocationDegrees
                 let tempLongitude = child.value.objectForKey("longitude") as! CLLocationDegrees
                 let coordinate = CLLocationCoordinate2D(latitude: tempLatitude, longitude: tempLongitude)
@@ -102,9 +114,9 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
                 marker.icon = GMSMarker.markerImageWithColor(UIColor.blackColor())
                 self.routeDescription = child.value.objectForKey("routeDescription") as! String
                 marker.appearAnimation = kGMSMarkerAnimationPop
+                marker.userData = myData
                 marker.title = self.routeDescription
                 marker.map = self.mapView
-                
             }
             
             }, withCancelBlock: { error in
@@ -112,16 +124,30 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         })
 
     }
+    func moveToEventDescriptionVC(date: String, eventID: String){
+        let viewController = EventDetailInfoVC(nibName: "EventDetailInfoVC", bundle: nil)
+        viewController.eventDate = date
+        viewController.eventID = eventID
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
     @IBAction func tapAddEvent(sender: AnyObject) {
-        if (!addAnEventMode){
-            addAnEventMode = true;
-            addAnEventButton.backgroundColor = UIColor.redColor()
+        self.addAnEventButton.animateButton(self.addAnEventButton)
+        if (self.ref.authData != nil){
+            if (!addAnEventMode){
+                addAnEventMode = true;
+                addAnEventButton.backgroundColor = UIColor.redColor()
 
+            }
+            else{
+                addAnEventMode = false;
+                addAnEventButton.backgroundColor = UIColor.whiteColor()
+            
+            }
         }
         else{
-            addAnEventMode = false;
-            addAnEventButton.backgroundColor = UIColor.whiteColor()
-            
+            let alert = UIAlertController(title: "Login", message: "Login to create an event", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
         }
     }
     
@@ -222,7 +248,7 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         self.locationManager.stopUpdatingLocation()
     }
     func appearFromBottom(view: UIView, animationTime: Float){
-        var animation:CATransition = CATransition()
+        let animation:CATransition = CATransition()
         animation.duration = CFTimeInterval(animationTime)
         animation.type = "moveIn"
         animation.timingFunction = CAMediaTimingFunction(name:"easeInEaseOut")

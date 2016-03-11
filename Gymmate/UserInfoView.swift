@@ -14,9 +14,9 @@ import FBSDKShareKit
 
 class UserInfoView: UIView{
     
+    @IBOutlet weak var loginView: UIView!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userName: UILabel!
-    
     @IBOutlet var view: UIView!
     
     var ref =  Firebase(url:"https://gym8.firebaseio.com");
@@ -48,12 +48,52 @@ class UserInfoView: UIView{
         view = loadViewFromNib()
         view.frame = bounds
         self.addSubview(self.view);
+        self.loginView.hidden = true
+
+        if (self.ref.authData != nil){
+            loadInfo()
+        }
+        else{
+            self.loginView.hidden = false;
+            print("haha")
+        }
+        //loadFriendList()
+    }
+    
+    @IBAction func tapLogOut(sender: AnyObject) {
+        self.ref.unauth()
+        self.loginView.hidden = false
+        
+    }
+    func authenticateUser(){
+        let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
+        self.ref.authWithOAuthProvider("facebook", token: accessToken,
+            withCompletionBlock: { error, authData in
+                if error != nil {
+                } else {
+                    print("Logged in! \(authData)")
+                    let newUser = [
+                        "provider": authData.provider,
+                        "displayName": authData.providerData["displayName"] as? NSString as? String
+                    ]
+                    let userRef = self.ref.childByAppendingPath("users")
+                    userRef.childByAppendingPath(authData.uid).setValue(newUser)
+                    self.loadInfo()
+
+                }
+        })
+    }
+    @IBAction func tapLogIn(sender: AnyObject) {
+        authenticateUser()
+        self.loginView.hidden = true;
+    }
+    func loadInfo(){
         let url = NSURL(string: self.ref.authData.providerData["profileImageURL"] as! String)
         let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
         self.userImage.contentMode = .ScaleAspectFit
         self.userImage.image =  UIImage(data: data!)
-        self.userName.text = self.ref.authData.providerData["displayName"] as! String
-        loadFriendList()
+        self.userName.text = self.ref.authData.providerData["displayName"] as? String
+
     }
     override init(frame: CGRect) {
         super.init(frame: frame)

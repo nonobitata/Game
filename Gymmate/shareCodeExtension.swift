@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
 extension NSDate{
     func toShortTimeString() -> String
     {
@@ -27,5 +29,18 @@ extension NSDate{
         //Return Short Time String
         return timeString
     }
+   
 }
-
+extension UIButton{
+    func animateButton(button: UIButton){
+        button.transform = CGAffineTransformMakeScale(0.7, 0.7)
+        UIView.animateWithDuration(0.5,
+            delay: 0,
+            usingSpringWithDamping: 0.20,
+            initialSpringVelocity: 20.00,
+            options: UIViewAnimationOptions.AllowUserInteraction,
+            animations: {
+                button.transform = CGAffineTransformIdentity
+            }, completion: nil)
+    }
+}

@@ -3,13 +3,17 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="infoWindowMapView" customModule="Gymmate" customModuleProvider="target">
             <connections>
                 <outlet property="button" destination="cbN-aK-91o" id="NuS-KY-vDB"/>
+                <outlet property="dateText" destination="Jbq-KR-5Bs" id="gjS-83-BXW"/>
+                <outlet property="eventIdText" destination="UfV-Ij-6Dx" id="p4c-xt-mjI"/>
                 <outlet property="nameActivityLabel" destination="pct-Ds-8mb" id="xtA-Qu-sma"/>
+                <outlet property="timeText" destination="RAS-If-jKU" id="odL-1r-zsw"/>
                 <outlet property="view" destination="JkS-EW-pHf" id="t3W-le-2iQ"/>
             </connections>
         </placeholder>
@@ -18,6 +22,18 @@
             <rect key="frame" x="0.0" y="0.0" width="230" height="120"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UfV-Ij-6Dx">
+                    <rect key="frame" x="8" y="86" width="214" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jbq-KR-5Bs">
+                    <rect key="frame" x="8" y="53" width="108" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.98431372549019602" green="0.39215686274509803" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pct-Ds-8mb">
                     <rect key="frame" x="8" y="14" width="214" height="39"/>
                     <constraints>
@@ -36,18 +52,36 @@
                         <action selector="touchJoinEvent:" destination="-1" eventType="touchUpInside" id="Z86-Yh-Xan"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAS-If-jKU">
+                    <rect key="frame" x="119" y="53" width="103" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="103" id="s7E-0v-maE"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="0.5045368376749817" blue="0.35087214935901101" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="Jbq-KR-5Bs" firstAttribute="leading" secondItem="pct-Ds-8mb" secondAttribute="leading" id="00j-nh-NKp"/>
                 <constraint firstItem="pct-Ds-8mb" firstAttribute="trailing" secondItem="JkS-EW-pHf" secondAttribute="trailingMargin" id="4XO-b6-gdg"/>
                 <constraint firstItem="pct-Ds-8mb" firstAttribute="top" secondItem="JkS-EW-pHf" secondAttribute="top" constant="14" id="50L-4y-YfU"/>
+                <constraint firstItem="RAS-If-jKU" firstAttribute="top" secondItem="pct-Ds-8mb" secondAttribute="bottom" id="5Gs-iY-Ybb"/>
+                <constraint firstItem="Jbq-KR-5Bs" firstAttribute="leading" secondItem="UfV-Ij-6Dx" secondAttribute="leading" id="8lK-4c-uqr"/>
+                <constraint firstItem="cbN-aK-91o" firstAttribute="top" secondItem="RAS-If-jKU" secondAttribute="bottom" constant="8" symbolic="YES" id="9gh-A7-oG9"/>
                 <constraint firstItem="pct-Ds-8mb" firstAttribute="leading" secondItem="JkS-EW-pHf" secondAttribute="leadingMargin" id="9sz-7r-Jc3"/>
                 <constraint firstItem="cbN-aK-91o" firstAttribute="top" secondItem="pct-Ds-8mb" secondAttribute="bottom" constant="29" id="Bpw-5R-Gce"/>
+                <constraint firstItem="RAS-If-jKU" firstAttribute="trailing" secondItem="pct-Ds-8mb" secondAttribute="trailing" id="FHT-mD-ErE"/>
                 <constraint firstItem="cbN-aK-91o" firstAttribute="bottom" secondItem="JkS-EW-pHf" secondAttribute="bottomMargin" id="Lgd-lc-YEL"/>
                 <constraint firstItem="pct-Ds-8mb" firstAttribute="trailing" secondItem="JkS-EW-pHf" secondAttribute="trailingMargin" id="atn-Jb-85E"/>
+                <constraint firstItem="RAS-If-jKU" firstAttribute="trailing" secondItem="UfV-Ij-6Dx" secondAttribute="trailing" id="bxF-Xm-1Js"/>
+                <constraint firstItem="RAS-If-jKU" firstAttribute="firstBaseline" secondItem="Jbq-KR-5Bs" secondAttribute="firstBaseline" id="deP-ZK-TVT"/>
                 <constraint firstItem="cbN-aK-91o" firstAttribute="leading" secondItem="JkS-EW-pHf" secondAttribute="leading" constant="73" id="eDy-D6-fEc"/>
+                <constraint firstItem="RAS-If-jKU" firstAttribute="baseline" secondItem="Jbq-KR-5Bs" secondAttribute="baseline" id="fSf-8d-Qcn"/>
                 <constraint firstItem="pct-Ds-8mb" firstAttribute="leading" secondItem="JkS-EW-pHf" secondAttribute="leadingMargin" id="oJT-zc-Evd"/>
                 <constraint firstItem="cbN-aK-91o" firstAttribute="centerX" secondItem="pct-Ds-8mb" secondAttribute="centerX" id="oTA-hR-hOx"/>
+                <constraint firstItem="RAS-If-jKU" firstAttribute="leading" secondItem="Jbq-KR-5Bs" secondAttribute="trailing" constant="3" id="w5n-A6-yOe"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
@@ -56,7 +90,7 @@
                     <exclude reference="oJT-zc-Evd"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="553" y="77"/>
+            <point key="canvasLocation" x="478" y="88"/>
         </view>
     </objects>
 </document>

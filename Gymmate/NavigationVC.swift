@@ -14,7 +14,8 @@ class NavigationVC: UINavigationController, UIViewControllerTransitioningDelegat
         super.viewDidLoad()
         
         // Status bar white font
-        self.navigationBar.barStyle = UIBarStyle.Black
-        self.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationBar.tintColor = UIColor(red: (255/255.0), green: (102/255.0), blue: (102/255.0), alpha: 1.0)
+
+
     }
 }

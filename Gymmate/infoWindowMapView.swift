@@ -13,7 +13,10 @@ import UIKit
 class infoWindowMapView: UIView {
 
     @IBOutlet weak var nameActivityLabel: UILabel!
+    @IBOutlet weak var dateText: UILabel!
     
+    @IBOutlet weak var timeText: UILabel!
+    @IBOutlet weak var eventIdText: UILabel!
     @IBOutlet var view: UIView!
     @IBOutlet weak var button: UIButton!
 
@@ -27,6 +30,12 @@ class infoWindowMapView: UIView {
     
         setUp()
         
+    }
+    func setUpInformation(title: String, eventID: String, date: String, time:String){
+        self.nameActivityLabel.text = title
+        self.eventIdText.text = eventID
+        self.dateText.text = date
+        self.timeText.text = time
     }
     @IBAction func touchJoinEvent(sender: AnyObject) {
         print("haha")
