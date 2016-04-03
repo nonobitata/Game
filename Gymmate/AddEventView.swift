@@ -121,16 +121,6 @@ class AddEventView: UIView,UIPickerViewDataSource,UIPickerViewDelegate,UITextVie
         }
         
         
-        
-}
-    private func addBottomLineToTextField(textField : UITextView) {
-        let border = CALayer()
-        let borderWidth = CGFloat(1.0)
-        border.borderColor = UIColor.whiteColor().CGColor
-        border.frame = CGRectMake(0, textField.frame.size.height - borderWidth, textField.frame.size.width, textField.frame.size.height)
-        border.borderWidth = borderWidth
-        textField.layer.addSublayer(border)
-        textField.layer.masksToBounds = true
     }
     // for this to work programmatically I had to do the same...
     override init(frame: CGRect) {
@@ -231,7 +221,6 @@ class AddEventView: UIView,UIPickerViewDataSource,UIPickerViewDelegate,UITextVie
     func setUp(){
         view = loadViewFromNib()
         view.frame = bounds
-        self.addBottomLineToTextField(self.routeDescriptionText)
 
         self.addSubview(self.view);
         setUpDateTimeArray()

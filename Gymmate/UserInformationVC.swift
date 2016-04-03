@@ -28,6 +28,7 @@ class UserInformationVC: UIViewController{
         userInfoView.tag = 2
         self.view.addSubview(userInfoView)
         
+        
     }
     
 

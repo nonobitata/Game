@@ -8,17 +8,19 @@
 //
 
 import UIKit
-
+import FBSDKShareKit
+import Firebase
 
 class infoWindowMapView: UIView {
 
     @IBOutlet weak var nameActivityLabel: UILabel!
     @IBOutlet weak var dateText: UILabel!
+    @IBOutlet weak var creatorImage: UIImageView!
     
     @IBOutlet weak var timeText: UILabel!
     @IBOutlet weak var eventIdText: UILabel!
     @IBOutlet var view: UIView!
-    @IBOutlet weak var button: UIButton!
+    var ref =  Firebase(url:"https://gym8.firebaseio.com");
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -31,15 +33,22 @@ class infoWindowMapView: UIView {
         setUp()
         
     }
-    func setUpInformation(title: String, eventID: String, date: String, time:String){
+    func setUpInformation(title: String, eventID: String, date: String, time:String, creator: String){
         self.nameActivityLabel.text = title
         self.eventIdText.text = eventID
         self.dateText.text = date
         self.timeText.text = time
+        print("creator:",creator)
+        
+
+        let string1 = "https://graph.facebook.com/10206073473620687/picture?type=square"
+        let url = NSURL(string: string1 )
+        let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
+        self.creatorImage.image =  UIImage(data: data!)
+        self.creatorImage.contentMode = .ScaleAspectFit
+
     }
-    @IBAction func touchJoinEvent(sender: AnyObject) {
-        print("haha")
-    }
+   
     func setUp(){
         view = loadViewFromNib()
         view.frame = bounds

@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 import FBSDKShareKit
+import FBSDKLoginKit
 
 
 class UserInfoView: UIView{
@@ -29,21 +30,31 @@ class UserInfoView: UIView{
         let view = nib.instantiateWithOwner(self, options: nil)[0] as! UIView
         return view
     }
-    func loadFriendList(){
-        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"friends"])
-        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
-            
-            if ((error) != nil)
-            {
-                // Process error
-                print("Error: \(error)")
-            }
-            else if (error == nil)
-            {
-                print("friends are: \(result)")
-            }
-        })
-    }
+//    func loadFriendList(){
+//        let params = ["fields": "id, first_name, last_name, middle_name, name, email, picture"]
+//        let request = FBSDKGraphRequest(graphPath: "me/taggable_friends?limit=1000", parameters: params)
+//        request.startWithCompletionHandler { (connection : FBSDKGraphRequestConnection!, result : AnyObject!, error : NSError!) -> Void in
+//            
+//            if error != nil {
+//                /* Handle error */
+//            }
+//            else if result.isKindOfClass(NSDictionary){
+//                /*  handle response */
+//                //print(result)
+//                let friends = NSMutableArray()
+//                let array = result.objectForKey("data")
+//                friends.addObject((array?.objectAtIndex(0))!)
+//                if (array!.count > 0) {
+//                    for index in 1...array!.count-1 {
+//                        friends.addObject((array?.objectAtIndex(index))!)
+//                        print((friends.objectAtIndex(index)).objectForKey("first_name"))
+//                    }
+//                }
+//                print(friends.count)
+//            }
+//        }
+//       // print(self.ref.authData.providerData["id"])
+//    }
     func setUp(){
         view = loadViewFromNib()
         view.frame = bounds
@@ -55,9 +66,8 @@ class UserInfoView: UIView{
         }
         else{
             self.loginView.hidden = false;
-            print("haha")
         }
-        //loadFriendList()
+       // loadFriendList()
     }
     
     @IBAction func tapLogOut(sender: AnyObject) {
@@ -66,6 +76,29 @@ class UserInfoView: UIView{
         
     }
     func authenticateUser(){
+        let facebookLogin = FBSDKLoginManager()
+        if (FBSDKAccessToken.currentAccessToken() == nil){
+        facebookLogin.logInWithReadPermissions(["email","user_friends","public_profile"], handler: {
+                    (facebookResult, facebookError) -> Void in
+                    if facebookError != nil {
+                        print("Facebook login failed. Error \(facebookError)")
+                    } else if facebookResult.isCancelled {
+                        print("Facebook login was cancelled.")
+                    } else {
+                                    }
+        })
+        }
+        else{
+            facebookLogin.logInWithReadPermissions(["email","user_friends","public_profile"], handler: {
+                (facebookResult, facebookError) -> Void in
+                if facebookError != nil {
+                    print("Facebook login failed. Error \(facebookError)")
+                } else if facebookResult.isCancelled {
+                    print("Facebook login was cancelled.")
+                } else {
+                }
+            })
+
         let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
         self.ref.authWithOAuthProvider("facebook", token: accessToken,
             withCompletionBlock: { error, authData in
@@ -74,7 +107,7 @@ class UserInfoView: UIView{
                     print("Logged in! \(authData)")
                     let newUser = [
                         "provider": authData.provider,
-                        "displayName": authData.providerData["displayName"] as? NSString as? String
+                        "displayName": authData.providerData["displayName"] as? NSString as? String,
                     ]
                     let userRef = self.ref.childByAppendingPath("users")
                     userRef.childByAppendingPath(authData.uid).setValue(newUser)
@@ -82,6 +115,7 @@ class UserInfoView: UIView{
 
                 }
         })
+        }
     }
     @IBAction func tapLogIn(sender: AnyObject) {
         authenticateUser()

@@ -48,7 +48,7 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
         
         let markerInfoWindow = infoWindowMapView(frame:CGRect(x: 0, y: 0, width: 230, height: 120))
-        markerInfoWindow.setUpInformation( marker.title , eventID:marker.userData["eventID"] as! String, date: marker.userData["date"] as! String, time:marker.userData["time"] as! String)
+        markerInfoWindow.setUpInformation( marker.title , eventID:marker.userData["eventID"] as! String, date: marker.userData["date"] as! String, time:marker.userData["time"] as! String, creator:  marker.userData["creatorID"] as! String)
       
         return markerInfoWindow
     }
@@ -100,12 +100,11 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         tempRef.observeEventType(.Value, withBlock: { snapshot in
             let a  = snapshot.children
             for (child) in a.allObjects as![FDataSnapshot] {
-                print(child.key)
                 var myData = Dictionary<String, String>()
                 myData["eventID"] = child.key
                 myData["date"] = child.value.objectForKey("date") as? String
                 myData["time"] = child.value.objectForKey("time") as? String
-
+                myData["creatorID"] = child.value.objectForKey("creatorID") as? String
                 let tempLatitude = child.value.objectForKey("latitude") as!CLLocationDegrees
                 let tempLongitude = child.value.objectForKey("longitude") as! CLLocationDegrees
                 let coordinate = CLLocationCoordinate2D(latitude: tempLatitude, longitude: tempLongitude)
@@ -204,7 +203,7 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
     }
     @IBAction func agreeAddEvent(sender: AnyObject) {
         let addView = self.view.viewWithTag(2) as! AddEventView
-        let info = ["latitude":tapLocation.latitude,"longitude":tapLocation.longitude,"routeDescription":addView.routeDescriptionText.text,"type":addView.currentActivity,"date":addView.currentDate, "time":addView.currentTime]
+        let info = ["latitude":tapLocation.latitude,"longitude":tapLocation.longitude,"routeDescription":addView.routeDescriptionText.text,"type":addView.currentActivity,"date":addView.currentDate, "time":addView.currentTime,"creatorID":ref.authData.uid]
         addDataToFirebase(info)
     
         dismissAllAddView()
