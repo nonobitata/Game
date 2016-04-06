@@ -17,29 +17,115 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
     
     lazy var mapView = GMSMapView()
     let addAnEventButton   = UIButton(type: UIButtonType.RoundedRect) as UIButton
+    let myLocButton   = UIButton(type: UIButtonType.RoundedRect) as UIButton
+
     let ref = Firebase(url: "https://gym8.firebaseio.com/listOfEvents/location")
     let addMarker = GMSMarker()
     var addAnEventMode = false;
     var tapLocation = CLLocationCoordinate2D()
     let locationManager = CLLocationManager()
     var routeDescription = String()
-   
+    var placesClient: GMSPlacesClient?
+    var resultsViewController: GMSAutocompleteResultsViewController?
+    var searchController: UISearchController?
+    var resultView: UITextView?
     
+
+    
+    func tryToPrintAllCoffeePlaces(latitude: CLLocationDegrees, longitude: CLLocationDegrees){
+        let southWest = CLLocationCoordinate2D(latitude: 40.712216, longitude: -74.22655)
+        let northEast = CLLocationCoordinate2D(latitude: 40.773941, longitude: -74.12544)
+        let overlayBounds = GMSCoordinateBounds(coordinate: southWest, coordinate: northEast)
+        
+        // Image from http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg
+        let icon = UIImage(named: "markerInfoWindow.png")
+        
+        let overlay = GMSGroundOverlay(bounds: overlayBounds, icon: icon)
+        overlay.bearing = 0
+        overlay.map = mapView
+        
+        let urlString = String(format: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=8000&type=gym&key=AIzaSyAg3I88OaaBJGcZCTApMdYvJfhGLUjmAY8",latitude,longitude)
+        print (urlString)
+        let requestURL: NSURL = NSURL(string: urlString)!
+        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: requestURL)
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(urlRequest) {
+            (data, response, error) -> Void in
+            
+            let httpResponse = response as! NSHTTPURLResponse
+            let statusCode = httpResponse.statusCode
+            
+            if (statusCode == 200) {
+                print("Everyone is fine, file downloaded successfully.")
+                    do{
+                        
+                        let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
+                    
+                        if let stations = json["results"] as? [[String: AnyObject]] {
+                            
+                            for station in stations {
+                                let dictionary = station as NSDictionary
+                                let lat = dictionary.valueForKeyPath("geometry.location.lat") as! NSNumber
+                                let long = dictionary.valueForKeyPath("geometry.location.lng") as! NSNumber
+                                
+                                let circleCenter = CLLocationCoordinate2D(latitude: Double(lat), longitude: Double(long))
+                                let circ = GMSCircle(position: circleCenter, radius: 20)
+                                circ.fillColor = UIColor.redColor()
+                                circ.map = self.mapView;
+                                
+                                if let name = station["id"] as? String {
+                                    
+                                    print (name)
+                                    
+                                }
+                            }
+                            
+                        }
+                        
+                    }catch {
+                        print("Error with Json: \(error)")
+                    }
+                
+            }
+        }
+        task.resume()
+        
+    }
+    @IBAction func myLocation(sender: AnyObject) {
+        placesClient?.currentPlaceWithCallback({
+        (placeLikelihoodList: GMSPlaceLikelihoodList?, error: NSError?) -> Void in
+        if let error = error {
+            print("Pick Place error: \(error.localizedDescription)")
+            return
+        }
+        
+        
+        
+        if let placeLikelihoodList = placeLikelihoodList {
+            let place = placeLikelihoodList.likelihoods.first?.place
+            if let place = place {
+                print(place.name)
+               print(place.formattedAddress!.componentsSeparatedByString(", ").joinWithSeparator("\n"))
+            }
+        }
+    })
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib
-
+        placesClient = GMSPlacesClient()
         addEventButtonInitialize()
-       
+        addMyLocInitialize()
        // self.navigationController?.setNavigationBarHidden(true, animated: true)
-        self.tabBarController?.title = "Maps"
+       // self.tabBarController?.title = "Maps"
 
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         mapInitialize()
 
     }
-  
+    
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
@@ -62,8 +148,16 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         self.addAnEventButton.frame = CGRectMake(20 , 20+66, 50, 50)
         self.addAnEventButton.backgroundColor = UIColor.whiteColor()
         self.addAnEventButton.setTitle("Add", forState: UIControlState.Normal)
-        self.addAnEventButton.addTarget(self, action: "tapAddEvent:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.addAnEventButton.addTarget(self, action: #selector(ViewController.tapAddEvent(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         self.mapView.addSubview(addAnEventButton)
+        
+    }
+    func addMyLocInitialize(){
+        self.myLocButton.frame = CGRectMake(100 , 20+66, 50, 50)
+        self.myLocButton.backgroundColor = UIColor.whiteColor()
+        self.myLocButton.setTitle("Loc", forState: UIControlState.Normal)
+    //    self.myLocButton.addTarget(self, action: #selector(ViewController.pickPlace(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.mapView.addSubview(myLocButton)
         
     }
     
@@ -240,11 +334,14 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
     }
     func locationManager(manager: CLLocationManager, didUpdateLocations locations:[CLLocation]){
         let location = locations.last
-        let camera = GMSCameraPosition.cameraWithLatitude(location!.coordinate.latitude, longitude: location!.coordinate.longitude, zoom: 15)
+        let camera = GMSCameraPosition.cameraWithLatitude(location!.coordinate.latitude, longitude: location!.coordinate.longitude, zoom: 12)
         //        let region = MKCoordinateRegion(center: center , span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
         mapView.camera = camera
         
+
         self.locationManager.stopUpdatingLocation()
+        self.tryToPrintAllCoffeePlaces(location!.coordinate.latitude, longitude: location!.coordinate.longitude)
+
     }
     func appearFromBottom(view: UIView, animationTime: Float){
         let animation:CATransition = CATransition()
@@ -263,7 +360,4 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
         })
     }
     
-    
-    
 }
-
