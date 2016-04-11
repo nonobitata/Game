@@ -24,7 +24,6 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
     var addAnEventMode = false;
     var tapLocation = CLLocationCoordinate2D()
     let locationManager = CLLocationManager()
-    var routeDescription = String()
     var placesClient: GMSPlacesClient?
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
@@ -69,10 +68,32 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
                                 let long = dictionary.valueForKeyPath("geometry.location.lng") as! NSNumber
                                 
                                 let circleCenter = CLLocationCoordinate2D(latitude: Double(lat), longitude: Double(long))
-                                let circ = GMSCircle(position: circleCenter, radius: 20)
-                                circ.fillColor = UIColor.redColor()
-                                circ.map = self.mapView;
+//                                let circ = GMSCircle(position: circleCenter, radius: 20)
+//                                circ.fillColor = UIColor.redColor()
+//                                circ.map = self.mapView;
+                                var myData = Dictionary<String, String>()
+                                myData["placeName"] = (dictionary.valueForKeyPath("name") as! String)
+                                myData["placeAddress"] = (dictionary.valueForKeyPath("vicinity") as! String)
+                                myData["placeImageReference"]  = ""
+
+                                if dictionary["photos"] != nil {
+                                    if  let k = dictionary["photos"]![0]["photo_reference"] {
+                                        myData["placeImageReference"] = k as? String
+                                    }
+                                    else{
+                                     print("KAKAKA")
+                                    }
+                                }
                                 
+                                
+
+                                let marker = GMSMarker(position: circleCenter)
+                                //xmarker.icon = GMSMarker.markerImageWithColor(UIColor.redColor())
+                                marker.appearAnimation = kGMSMarkerAnimationPop
+                                marker.userData = myData
+                                marker.title = "suggestedLocation"
+                                marker.icon = UIImage(named: "suggestedLocationMarker1")
+                                marker.map = self.mapView
                                 if let name = station["id"] as? String {
                                     
                                     print (name)
@@ -132,12 +153,22 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
     }
     
     func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
-        
-        let markerInfoWindow = infoWindowMapView(frame:CGRect(x: 0, y: 0, width: 230, height: 120))
-        markerInfoWindow.setUpInformation( marker.title , eventID:marker.userData["eventID"] as! String, date: marker.userData["date"] as! String, time:marker.userData["time"] as! String, creator:  marker.userData["creatorID"] as! String)
-      
-        return markerInfoWindow
-    }
+
+        if (marker.title == "eventPoint"){
+            let markerInfoWindow = infoWindowMapView(frame:CGRect(x: 0, y: 0, width: 230, height: 120))
+            markerInfoWindow.setUpInformation( marker.userData["routeDescription"] as! String , eventID:marker.userData["eventID"] as! String, date: marker.userData["date"] as! String, time:marker.userData["time"] as! String, creator:  marker.userData["creatorID"] as! String)
+            return markerInfoWindow
+
+        }
+        else
+            if (marker.title == "suggestedLocation"){
+                let markerInfoWindow = infoWindowSuggestedLocation(frame:CGRect(x: 0, y: 0, width: 230, height: 120))
+                markerInfoWindow.setUpInformation(marker.userData["placeName"] as! String, address: marker.userData["placeAddress"] as! String, imageReference: marker.userData["placeImageReference"]! as! String)
+                return markerInfoWindow
+            }
+        return nil
+        }
+
     func mapView(mapView: GMSMapView!, didTapInfoWindowOfMarker marker: GMSMarker!) {
         print("haha")
         moveToEventDescriptionVC(marker.userData["date"] as! String
@@ -205,10 +236,10 @@ class ViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDeleg
                 let  position = coordinate
                 let marker = GMSMarker(position: position)
                 marker.icon = GMSMarker.markerImageWithColor(UIColor.blackColor())
-                self.routeDescription = child.value.objectForKey("routeDescription") as! String
+                myData["routeDescription"] = child.value.objectForKey("routeDescription") as? String
                 marker.appearAnimation = kGMSMarkerAnimationPop
                 marker.userData = myData
-                marker.title = self.routeDescription
+                marker.title = "eventPoint"
                 marker.map = self.mapView
             }
             

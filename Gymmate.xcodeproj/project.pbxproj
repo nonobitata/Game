@@ -16,10 +16,13 @@
 		026173A01C711C7A00F31C69 /* UserInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0261739F1C711C7A00F31C69 /* UserInformationVC.swift */; };
 		026173A21C71353D00F31C69 /* infoWindowMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026173A11C71353D00F31C69 /* infoWindowMapView.swift */; };
 		026173A41C71355E00F31C69 /* infoWindowMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 026173A31C71355E00F31C69 /* infoWindowMapView.xib */; };
-		026173A81C713A3100F31C69 /* markerInfoWindow.png in Resources */ = {isa = PBXBuildFile; fileRef = 026173A71C713A3100F31C69 /* markerInfoWindow.png */; };
 		027DB25F1C66A5B60083B647 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 027DB25E1C66A5B60083B647 /* libc++.tbd */; };
 		028111F51C6488DA007DE964 /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028111F41C6488DA007DE964 /* AddEventView.swift */; };
 		028111F71C64891C007DE964 /* AddEventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 028111F61C64891C007DE964 /* AddEventView.xib */; };
+		028CCEF11CBB857D0040E28F /* infoWindowSuggestedLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028CCEF01CBB857D0040E28F /* infoWindowSuggestedLocation.swift */; };
+		028CCEF31CBB88050040E28F /* infoWindowSuggestedLocation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 028CCEF21CBB88050040E28F /* infoWindowSuggestedLocation.xib */; };
+		028CCEFD1CBBA3B80040E28F /* suggestedLocationMarker.png in Resources */ = {isa = PBXBuildFile; fileRef = 028CCEFC1CBBA3B80040E28F /* suggestedLocationMarker.png */; };
+		028CCEFF1CBBA7160040E28F /* suggestedLocationMarker1.png in Resources */ = {isa = PBXBuildFile; fileRef = 028CCEFE1CBBA7160040E28F /* suggestedLocationMarker1.png */; };
 		02A685AF1C6335FA00946810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A685AE1C6335FA00946810 /* AppDelegate.swift */; };
 		02A685B11C6335FA00946810 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A685B01C6335FA00946810 /* ViewController.swift */; };
 		02A685B41C6335FA00946810 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02A685B21C6335FA00946810 /* Main.storyboard */; };
@@ -60,10 +63,13 @@
 		0261739F1C711C7A00F31C69 /* UserInformationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInformationVC.swift; sourceTree = "<group>"; };
 		026173A11C71353D00F31C69 /* infoWindowMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = infoWindowMapView.swift; sourceTree = "<group>"; };
 		026173A31C71355E00F31C69 /* infoWindowMapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = infoWindowMapView.xib; sourceTree = "<group>"; };
-		026173A71C713A3100F31C69 /* markerInfoWindow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = markerInfoWindow.png; path = GymmateTests/markerInfoWindow.png; sourceTree = SOURCE_ROOT; };
 		027DB25E1C66A5B60083B647 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		028111F41C6488DA007DE964 /* AddEventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
 		028111F61C64891C007DE964 /* AddEventView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEventView.xib; sourceTree = "<group>"; };
+		028CCEF01CBB857D0040E28F /* infoWindowSuggestedLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = infoWindowSuggestedLocation.swift; sourceTree = "<group>"; };
+		028CCEF21CBB88050040E28F /* infoWindowSuggestedLocation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = infoWindowSuggestedLocation.xib; sourceTree = "<group>"; };
+		028CCEFC1CBBA3B80040E28F /* suggestedLocationMarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = suggestedLocationMarker.png; sourceTree = "<group>"; };
+		028CCEFE1CBBA7160040E28F /* suggestedLocationMarker1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = suggestedLocationMarker1.png; sourceTree = "<group>"; };
 		02A685AB1C6335FA00946810 /* Gymmate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gymmate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02A685AE1C6335FA00946810 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02A685B01C6335FA00946810 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -115,8 +121,12 @@
 		0212ACC51C8D4CEF0007E6A4 /* MapInfoWindow */ = {
 			isa = PBXGroup;
 			children = (
+				028CCEF01CBB857D0040E28F /* infoWindowSuggestedLocation.swift */,
+				028CCEF21CBB88050040E28F /* infoWindowSuggestedLocation.xib */,
 				026173A11C71353D00F31C69 /* infoWindowMapView.swift */,
 				026173A31C71355E00F31C69 /* infoWindowMapView.xib */,
+				028CCEFC1CBBA3B80040E28F /* suggestedLocationMarker.png */,
+				028CCEFE1CBBA7160040E28F /* suggestedLocationMarker1.png */,
 			);
 			name = MapInfoWindow;
 			sourceTree = "<group>";
@@ -161,7 +171,6 @@
 				02A685BA1C6335FA00946810 /* LaunchScreen.storyboard */,
 				02A685BD1C6335FA00946810 /* Info.plist */,
 				02A685B51C6335FA00946810 /* Gymmate.xcdatamodeld */,
-				026173A71C713A3100F31C69 /* markerInfoWindow.png */,
 			);
 			path = Gymmate;
 			sourceTree = "<group>";
@@ -293,6 +302,7 @@
 				TargetAttributes = {
 					02A685AA1C6335FA00946810 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = VAUJ7GY4KD;
 					};
 					02A685C11C6335FA00946810 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -334,9 +344,11 @@
 				0212ACC21C8D4B730007E6A4 /* UserInfoView.xib in Resources */,
 				02A685B91C6335FA00946810 /* Assets.xcassets in Resources */,
 				026173A41C71355E00F31C69 /* infoWindowMapView.xib in Resources */,
+				028CCEF31CBB88050040E28F /* infoWindowSuggestedLocation.xib in Resources */,
+				028CCEFF1CBBA7160040E28F /* suggestedLocationMarker1.png in Resources */,
 				0237198D1C708D0D00D6C236 /* SF-UI-Display-Semibold.otf in Resources */,
+				028CCEFD1CBBA3B80040E28F /* suggestedLocationMarker.png in Resources */,
 				0237198A1C708BE500D6C236 /* SF-UI-Display-Regular.otf in Resources */,
-				026173A81C713A3100F31C69 /* markerInfoWindow.png in Resources */,
 				02A685B41C6335FA00946810 /* Main.storyboard in Resources */,
 				028111F71C64891C007DE964 /* AddEventView.xib in Resources */,
 			);
@@ -416,6 +428,7 @@
 				028111F51C6488DA007DE964 /* AddEventView.swift in Sources */,
 				02A685B71C6335FA00946810 /* Gymmate.xcdatamodeld in Sources */,
 				02C988361C927F2800460FFA /* EventDetailInfoVC.swift in Sources */,
+				028CCEF11CBB857D0040E28F /* infoWindowSuggestedLocation.swift in Sources */,
 				02A685B11C6335FA00946810 /* ViewController.swift in Sources */,
 				023719881C707F6100D6C236 /* shareCodeExtension.swift in Sources */,
 				02A685AF1C6335FA00946810 /* AppDelegate.swift in Sources */,
@@ -563,6 +576,7 @@
 			baseConfigurationReference = 8B32963FF658EA6C4D1FE582 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/GoogleMaps/Frameworks\"",
@@ -575,6 +589,7 @@
 					"\"{PODS_ROOT}/FBSDKCoreKit\"",
 				);
 				INFOPLIST_FILE = Gymmate/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TrungDo.Gymmate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -586,6 +601,7 @@
 			baseConfigurationReference = C607754E6CA382E8CE1C23DE /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/GoogleMaps/Frameworks\"",
@@ -598,6 +614,7 @@
 					"\"{PODS_ROOT}/FBSDKCoreKit\"",
 				);
 				INFOPLIST_FILE = Gymmate/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TrungDo.Gymmate;
 				PRODUCT_NAME = "$(TARGET_NAME)";

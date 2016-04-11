@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="SF-UI-Display-Regular.otf">
+            <string>SFUIDisplay-Regular</string>
+        </mutableArray>
+        <mutableArray key="SF-UI-Display-Semibold.otf">
+            <string>SFUIDisplay-Semibold</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="infoWindowSuggestedLocation" customModule="Gymmate" customModuleProvider="target">
+            <connections>
+                <outlet property="addressLabel" destination="ApZ-VX-icn" id="oQ6-MM-TV5"/>
+                <outlet property="placeImage" destination="NMC-Fd-xlI" id="9i0-MK-g9t"/>
+                <outlet property="placeNameLabel" destination="HtS-8p-H67" id="o5R-5E-arQ"/>
+                <outlet property="view" destination="iN0-l3-epB" id="F0W-9c-Av8"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="230" height="120"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NMC-Fd-xlI">
+                    <rect key="frame" x="0.0" y="0.0" width="230" height="120"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HtS-8p-H67">
+                    <rect key="frame" x="0.0" y="0.0" width="230" height="47"/>
+                    <color key="backgroundColor" red="0.0056635558985659506" green="0.0063753803801702164" blue="0.0072398560209424589" alpha="0.5771276595744681" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="47" id="05e-pd-4Wa"/>
+                        <constraint firstAttribute="width" constant="230" id="jrT-Kp-YHT"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFUIDisplay-Semibold" family="SF UI Display" pointSize="16"/>
+                    <color key="textColor" red="0.40806786889056956" green="1" blue="0.55412229694636128" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ApZ-VX-icn">
+                    <rect key="frame" x="0.0" y="47" width="230" height="73"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.57696143617021278" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="16"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="HtS-8p-H67" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="topMargin" constant="-8" id="Bon-Fk-aDN"/>
+                <constraint firstItem="ApZ-VX-icn" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottomMargin" constant="8" id="FNF-7H-xgB"/>
+                <constraint firstItem="NMC-Fd-xlI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="OVR-Iq-DCp"/>
+                <constraint firstItem="HtS-8p-H67" firstAttribute="leading" secondItem="ApZ-VX-icn" secondAttribute="leading" id="Pnw-3l-ey2"/>
+                <constraint firstAttribute="trailing" secondItem="NMC-Fd-xlI" secondAttribute="trailing" id="R3a-ZM-xR8"/>
+                <constraint firstItem="NMC-Fd-xlI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="TYx-iu-OkC"/>
+                <constraint firstItem="HtS-8p-H67" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" constant="-8" id="Wbv-fi-FUP"/>
+                <constraint firstItem="NMC-Fd-xlI" firstAttribute="centerX" secondItem="ApZ-VX-icn" secondAttribute="centerX" id="YoH-Jc-zGL"/>
+                <constraint firstAttribute="bottom" secondItem="NMC-Fd-xlI" secondAttribute="bottom" id="fVP-bd-gkb"/>
+                <constraint firstItem="ApZ-VX-icn" firstAttribute="top" secondItem="HtS-8p-H67" secondAttribute="bottom" id="v0X-0H-yWq"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+</document>
